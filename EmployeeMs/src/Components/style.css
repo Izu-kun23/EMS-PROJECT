@@ -1,0 +1,251 @@
+.loginPage {
+    background: url('Images/rig.jpg');
+    background: linear-gradient(rgba(11, 11, 11, 0.5), rgba(10, 10, 10, 0.5)), url("Images/rig.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 120%;
+}
+
+.loginForm {
+    background-color: rgba(1, 32, 93, 0.6);
+    color: white;
+}
+
+.nav-item .nav-link:hover {
+    background-color: #343a40; /* Change this color to suit your design */
+    color: #ffffff; /* Change text color on hover if needed */
+    border-radius: 0.25rem; /* Optional: for rounded corners */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .add-category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+/* Style for the form input hover effect */
+.form-group input:hover {
+    border-color: #007bff; /* Standard blue color */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Optional: adds a subtle glow effect with blue color */
+  }
+  
+  /* Style for the form buttons */
+  .form-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+  /* Style for the form button when hovered */
+  .form-btn:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: white; /* Text color changes to white on hover */
+  }
+  
+  /* Remove margin from the last button */
+  .form-btn:last-child {
+    margin-right: 0;
+  }
+  
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .form-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-actions button:not(:last-child) {
+    margin-right: 10px;
+  }
+  .add-employee-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background: #fff;
+    height:80%;
+  }
+  
+  .add-employee-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-employee-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-employee-form label {
+    margin-top: 10px;
+  }
+  
+  .add-employee-form input[type="text"],
+  .add-employee-form input[type="email"],
+  .add-employee-form input[type="password"],
+  .add-employee-form input[type="number"],
+  .add-employee-form select,
+  .add-employee-form input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .add-employee-form button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: blue; /* Change to your preferred button color */
+    color: white;
+    cursor: pointer;
+  }
+
+  /* .employee_image{
+    width:40px;
+    height: 40px;
+    border-radius: 40%;
+  } */
+
+  .employee-list-container {
+    padding: 20px;
+    background: #f9f9f9; /* Light background for the outer container */
+  }
+  
+  .employee-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .btn-add-employee {
+    padding: 10px 15px;
+    background-color: #e82914; /* Primary button color */
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .btn-add-employee:hover {
+    background-color: #0056b3; /* Darker shade for hover state */
+  }
+  
+  .employee-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow for the table */
+  }
+  
+  .employee-list-table thead th {
+    background-color: #000000; /* Header background color */
+    color: white;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .employee-list-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .employee-list-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .employee-list-table img.employee_image {
+    width:40px;
+    height: 40px;
+    border-radius: 40%;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem; /* Smaller font size for buttons */
+  }
+  
+  .btn-info {
+    background-color: #17a2b8; /* Info button color */
+    color: white;
+  }
+  
+  .btn-info:hover {
+    background-color: #1966d8; /* Darker shade for hover state */
+  }
+  
+  .btn-warning {
+    background-color: #07eaff; /* Warning button color */
+    color: white;
+  }
+  
+  .btn-warning:hover {
+    background-color: #e0a800; /* Darker shade for hover state */
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .employee-list-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .btn-add-employee {
+      margin-top: 10px;
+    }
+  
+    .employee-list-table {
+      font-size: 0.875rem;
+    }
+  }
+  
+  
+  /* Add more styling as needed */
+  
