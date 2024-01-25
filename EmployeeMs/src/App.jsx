@@ -9,6 +9,7 @@ import Profile from "./Components/Profile";
 import AddCategory from "./Components/AddCategory";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AddEmployee from "./Components/AddEmployee";
+import EditEmployee from "./Components/EditEmployee";
 
 
 
@@ -24,6 +25,8 @@ const App = () => {
            <Route path= '/dashboard/profile' element={<Profile />}> </Route> 
            <Route path= '/dashboard/add_category' element={< AddCategory/>}></Route> 
            <Route path= '/dashboard/add_employee' element={< AddEmployee/>}></Route> 
+           <Route path= '/dashboard/edit_employee/:id' element={< EditEmployee/>}></Route> 
+
 
         </Route>
       </Routes>
