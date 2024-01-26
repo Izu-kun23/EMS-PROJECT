@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css"; // Make sure to create this CSS file
 
 const Employee = () => {
   const [employee, setEmployee] = useState([]);
-
+  const navigate = useNavigate()
   useEffect(() => {
     axios
       .get("http://localhost:3000/auth/employee")
@@ -20,7 +20,14 @@ const Employee = () => {
   }, []);
 
   const handleDelete = (id) => {
-    // Implementation of delete functionality
+    axios.delete("http://localhost:3000/auth/delete_employee/" +id)
+    .then(result => {
+      if(result.data.Status){
+        window.location.reload()
+      }else{
+        alert(result.data.Error)
+      }
+    })
   };
 
   return (
