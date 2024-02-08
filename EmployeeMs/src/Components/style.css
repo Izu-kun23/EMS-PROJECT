@@ -1,3 +1,11 @@
+.logo {
+  max-width: 100%; /* Ensure it is responsive and doesn't overflow its container */
+  height: auto; /* Maintain aspect ratio */
+  /* Add any additional styling as needed */
+}
+
+
+
 .loginPage {
     background: url('Images/rig.jpg');
     background: linear-gradient(rgba(11, 11, 11, 0.5), rgba(10, 10, 10, 0.5)), url("Images/rig.jpg");
@@ -12,12 +20,21 @@
 }
 
 
-.nav-item .nav-link:hover {
-    background-color: #343a40; /* Change this color to suit your design */
-    color: #ffffff; /* Change text color on hover if needed */
-    border-radius: 0.25rem; /* Optional: for rounded corners */
-    transition: background-color 0.3s, color 0.3s;
-  }
+/* style.css */
+
+/* Add hover effect to navigation links */
+.nav-link:hover {
+  background-color: #343a40; /* Change the background color on hover */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+/* Optional: Change the color of the text on hover */
+.nav-link:hover span {
+  color: #ffffff; /* Change the text color on hover */
+  transition: color 0.3s ease; /* Add a smooth transition effect */
+}
+
+
   .add-category-container {
     display: flex;
     justify-content: center;
@@ -246,6 +263,193 @@
       font-size: 0.875rem;
     }
   }
+
+  .emp_det_image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+  
+  /* Basic styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Sidebar styling */
+.col-auto {
+  flex: 0 0 auto;
+}
+
+.col {
+  flex: 1 1 auto;
+}
+
+.bg-dark {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+/* Logo styling */
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Navbar styling */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  padding: 10px;
+}
+
+/* Navbar button styling for small screens */
+
+
+/* Sidebar styling */
+
+/* Responsive adjustments */
+
+
+
+
+
+/* style.css */
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa; /* Light gray background */
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background-color: #343a40; /* Dark gray */
+  color: white;
+  width: 250px; /* Fixed width */
+  overflow-y: auto; /* Scrollable content */
+  position: fixed; /* Fixed position */
+  top: 0;
+  bottom: 0;
+  left: -250px; /* Start off-screen */
+  transition: left 0.3s ease-in-out; /* Smooth transition for opening/closing */
+  z-index: 100; /* Ensures sidebar is above other content */
+}
+
+.sidebar.open {
+  left: 0; /* Move onto screen when 'open' */
+}
+
+/* Main content area */
+.main-content {
+  flex-grow: 1; /* Take up remaining width */
+  transition: margin-left 0.3s ease-in-out; /* Smooth transition for sliding */
+}
+
+/* Adjust margin when sidebar is open */
+.main-content.shift {
+  margin-left: 250px;
+}
+
+/* Menu toggle button */
+.menu-toggle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101; /* Above the sidebar */
+  background-color: #007bff; /* Bootstrap blue */
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+}
+
+/* Show the toggle button in mobile view */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Show toggle button on mobile */
+  }
+  
+  .sidebar {
+    width: 100%; /* Full-width sidebar on mobile */
+    left: -100%; /* Start off-screen */
+  }
+
+  .sidebar.open {
+    left: 0; /* Sidebar always on-screen on mobile */
+  }
+
+  .main-content, .main-content.shift {
+    margin-left: 0; /* No margin for main content on mobile */
+  }
+}
+
+/* Navigation Styles */
+.nav {
+  list-style-type: none;
+}
+
+.nav .nav-link {
+  color: white;
+  padding: 0.5rem 1rem; /* Padding for links */
+  text-decoration: none; /* No underline */
+  display: flex;
+  align-items: center;
+}
+
+.nav .nav-link:hover {
+  background-color: #50575d; /* Slightly lighter gray on hover */
+}
+
+.nav .nav-link .bi {
+  font-size: 1.25rem; /* Icon size */
+  margin-right: 0.5rem; /* Space between icon and text */
+}
+
+/* Header styles */
+.header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center; /* Center title text */
+  padding: 1rem; /* Padding around title */
+}
+
+.sidebar-header {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Logo image styles */
+.sidebar-logo {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+
   
   
   /* Add more styling as needed */
