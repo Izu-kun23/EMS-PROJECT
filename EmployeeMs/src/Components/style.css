@@ -1,330 +1,21 @@
-.logo {
-  max-width: 100%; /* Ensure it is responsive and doesn't overflow its container */
-  height: auto; /* Maintain aspect ratio */
-  /* Add any additional styling as needed */
-}
-
-
-
+/* Login Page Styling */
 .loginPage {
-    background: url('Images/rig.jpg');
-    background: linear-gradient(rgba(11, 11, 11, 0.5), rgba(10, 10, 10, 0.5)), url("Images/rig.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 120%;
+  background: linear-gradient(rgba(11, 11, 11, 0.5), rgba(10, 10, 10, 0.5)), 
+              url('/public/Images/rig.jpg') center / cover no-repeat;
 }
 
 .loginForm {
-    background-color: rgba(1, 32, 93, 0.6);
-    color: white;
+  background-color: rgba(1, 32, 93, 0.6);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: auto;
 }
 
 
-/* style.css */
 
-/* Add hover effect to navigation links */
-.nav-link:hover {
-  background-color: #343a40; /* Change the background color on hover */
-  transition: background-color 0.3s ease; /* Add a smooth transition effect */
-}
-
-/* Optional: Change the color of the text on hover */
-.nav-link:hover span {
-  color: #ffffff; /* Change the text color on hover */
-  transition: color 0.3s ease; /* Add a smooth transition effect */
-}
-
-
-  .add-category-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .form-container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-/* Style for the form input hover effect */
-.form-group input:hover {
-    border-color: #007bff; /* Standard blue color */
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Optional: adds a subtle glow effect with blue color */
-  }
-  
-  /* Style for the form buttons */
-  .form-btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s; /* Smooth transition for background color */
-  }
-  
-  /* Style for the form button when hovered */
-  .form-btn:hover {
-    background-color: #007bff; /* Blue background on hover */
-    color: white; /* Text color changes to white on hover */
-  }
-  
-  /* Remove margin from the last button */
-  .form-btn:last-child {
-    margin-right: 0;
-  }
-  
-  
-  .form-group input,
-  .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .form-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .form-actions button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .form-actions button:not(:last-child) {
-    margin-right: 10px;
-  }
-  .add-employee-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    background: #fff;
-    height:80%;
-  }
-  
-  .add-employee-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .add-employee-form h3 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .add-employee-form label {
-    margin-top: 10px;
-  }
-  
-  .add-employee-form input[type="text"],
-  .add-employee-form input[type="email"],
-  .add-employee-form input[type="password"],
-  .add-employee-form input[type="number"],
-  .add-employee-form select,
-  .add-employee-form input[type="file"] {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .add-employee-form button {
-    margin-top: 20px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: blue; /* Change to your preferred button color */
-    color: white;
-    cursor: pointer;
-  }
-
-  /* .employee_image{
-    width:40px;
-    height: 40px;
-    border-radius: 40%;
-  } */
-
-  .employee-list-container {
-    padding: 20px;
-    background: #f9f9f9; /* Light background for the outer container */
-  }
-  
-  .employee-list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .btn-add-employee {
-    padding: 10px 15px;
-    background-color: #e82914; /* Primary button color */
-    color: white;
-    text-decoration: none;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-  
-  .btn-add-employee:hover {
-    background-color: #0056b3; /* Darker shade for hover state */
-  }
-  
-  .employee-list-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow for the table */
-  }
-  
-  .employee-list-table thead th {
-    background-color: #000000; /* Header background color */
-    color: white;
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .employee-list-table tbody td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .employee-list-table tbody tr:last-child td {
-    border-bottom: none;
-  }
-  
-  .employee-list-table img.employee_image {
-    width:40px;
-    height: 40px;
-    border-radius: 40%;
-  }
-  
-  .btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.875rem; /* Smaller font size for buttons */
-  }
-  
-  .btn-info {
-    background-color: #17a2b8; /* Info button color */
-    color: white;
-  }
-  
-  .btn-info:hover {
-    background-color: #1966d8; /* Darker shade for hover state */
-  }
-  
-  .btn-warning {
-    background-color: #07eaff; /* Warning button color */
-    color: white;
-  }
-  
-  .btn-warning:hover {
-    background-color: #e0a800; /* Darker shade for hover state */
-  }
-  
-  /* Responsiveness */
-  @media (max-width: 768px) {
-    .employee-list-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .btn-add-employee {
-      margin-top: 10px;
-    }
-  
-    .employee-list-table {
-      font-size: 0.875rem;
-    }
-  }
-
-  .emp_det_image {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-}
-  
-  /* Basic styling */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-}
-
-.container-fluid {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Sidebar styling */
-.col-auto {
-  flex: 0 0 auto;
-}
-
-.col {
-  flex: 1 1 auto;
-}
-
-.bg-dark {
-  background-color: #343a40;
-  color: #ffffff;
-}
-
-/* Logo styling */
-.logo {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Navbar styling */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #007bff;
-  padding: 10px;
-}
-
-/* Navbar button styling for small screens */
-
-
-/* Sidebar styling */
-
-/* Responsive adjustments */
-
-
-
-
-
-/* style.css */
-/* General Reset */
+/* General Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -333,124 +24,450 @@ nav {
 
 body, html {
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f8f9fa; /* Light gray background */
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa; /* Light gray background */
 }
 
-/* Dashboard Container */
-.dashboard-container {
-  display: flex;
-  height: 100vh;
-}
 
-/* Sidebar styles */
+/* Sidebar basic styles */
 .sidebar {
-  background-color: #343a40; /* Dark gray */
+  background-color: #1265b8; /* Dark blue background */
   color: white;
-  width: 250px; /* Fixed width */
-  overflow-y: auto; /* Scrollable content */
-  position: fixed; /* Fixed position */
-  top: 0;
-  bottom: 0;
-  left: -250px; /* Start off-screen */
-  transition: left 0.3s ease-in-out; /* Smooth transition for opening/closing */
-  z-index: 100; /* Ensures sidebar is above other content */
-}
-
-.sidebar.open {
-  left: 0; /* Move onto screen when 'open' */
-}
-
-/* Main content area */
-.main-content {
-  flex-grow: 1; /* Take up remaining width */
-  transition: margin-left 0.3s ease-in-out; /* Smooth transition for sliding */
-}
-
-/* Adjust margin when sidebar is open */
-.main-content.shift {
-  margin-left: 250px;
-}
-
-/* Menu toggle button */
-.menu-toggle {
+  width: 250px; /* Expanded width */
   position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
-  z-index: 101; /* Above the sidebar */
+  transition: width 0.3s ease, transform 0.3s ease;
+  overflow-y: auto; /* Scrollable */
+  z-index: 1000; /* Ensure sidebar is above other content */
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  align-items: center; /* Center children horizontally when collapsed */
+  padding-top: 20px; /* Top padding for aesthetic spacing from the top */
+}
+
+/* Collapsed state */
+.sidebar.collapsed {
+  width: 80px; /* Width to only show icons */
+}
+
+.nav-link {
+  width: 100%; /* Ensure link utilizes full width for better click area */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content (icon + text) */
+  padding: 12px 15px; /* Increased padding for more space around items */
+  text-align: center; /* Ensure text is centered, useful for when text wraps */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Optional: adds a subtle separator */
+}
+.nav-link:hover {
+  background-color: #2445bf; /* Slightly darker blue on hover for contrast */
+  color: #ffffff; /* Ensure text color is white for readability */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link .icon {
+  margin-right: 10px; /* Space between icon and text */
+}
+
+/* Hide text when sidebar is collapsed */
+.sidebar.collapsed .nav-link span {
+  display: none;
+}
+
+/* Toggle button styling */
+.menu-toggle {
+  cursor: pointer;
+  position: fixed;
+  z-index: 5;
+  top: 15px;
+  left: calc(100% - 45px); /* Adjust based on your layout */
   background-color: #007bff; /* Bootstrap blue */
   color: white;
   border: none;
-  padding: 0.75rem 1rem;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Main content adjustment */
+.main-content {
+  transition: margin-left 0.3s;
+  margin-left: 250px; /* Adjusted for expanded sidebar */
+}
+
+.main-content.expanded {
+  margin-left: 80px; /* Adjust for collapsed sidebar width */
+}
+
+/* Additional adjustments for responsiveness and more */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px; /* Keep sidebar collapsed on mobile */
+  }
+  .main-content, .main-content.expanded {
+    margin-left: 0; /* Full width content on small screens */
+  }
+}
+
+
+/* ... other styles remain unchanged ... */
+
+/* Toggle Button Styling */
+.menu-toggle {
+  position: fixed;
+  top: 15px;
+  left: calc(100% - 60px); /* Positioned right of the sidebar */
+  background-color: #1265b8;; /* Bootstrap primary blue */
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  z-index: 1001; /* Above the sidebar */
+}
+
+/* Logo Styling */
+.logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 1rem;
+}
+
+
+
+/* Form Styling */
+.form-group input:hover,
+.form-btn:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+.form-btn {
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
   cursor: pointer;
 }
 
-/* Show the toggle button in mobile view */
+.form-btn:hover {
+  background-color: darken(#007bff, 5%);
+}
+
+/* Adjustments for smaller screens */
 @media (max-width: 768px) {
+  .sidebar,
+  .main-content,
+  .main-content.expanded {
+    width: 100%;
+    margin-left: 0;
+  }
+
   .menu-toggle {
-    display: block; /* Show toggle button on mobile */
-  }
-  
-  .sidebar {
-    width: 100%; /* Full-width sidebar on mobile */
-    left: -100%; /* Start off-screen */
-  }
-
-  .sidebar.open {
-    left: 0; /* Sidebar always on-screen on mobile */
-  }
-
-  .main-content, .main-content.shift {
-    margin-left: 0; /* No margin for main content on mobile */
+    left: 15px; /* Adjust toggle button to be visible on small screens */
   }
 }
 
-/* Navigation Styles */
-.nav {
-  list-style-type: none;
+.employee-list-container {
+  padding: 20px;
+  background: #f9f9f9; /* Light background for the container */
 }
 
-.nav .nav-link {
-  color: white;
-  padding: 0.5rem 1rem; /* Padding for links */
-  text-decoration: none; /* No underline */
+.employee-list-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 
-.nav .nav-link:hover {
-  background-color: #50575d; /* Slightly lighter gray on hover */
+.employee-list-table {
+  width: 100%; /* Ensure table takes full width of its container */
+  border-collapse: collapse; /* Remove space between borders */
+  margin: auto; /* Center table horizontally */
 }
 
-.nav .nav-link .bi {
-  font-size: 1.25rem; /* Icon size */
-  margin-right: 0.5rem; /* Space between icon and text */
+.employee-list-table thead th {
+  background-color: #0e4f95; /* Giving a blue background for the header */
+  color: white;
+  padding: 10px;
+  text-align: left; /* Align table headers to the left */
 }
 
-/* Header styles */
-.header {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  text-align: center; /* Center title text */
-  padding: 1rem; /* Padding around title */
+.employee-list-table tbody td {
+  padding: 10px;
+  border-top: 1px solid #dee2e6; /* Light border for each cell for better readability */
+  text-align: left; /* Align table content to the left */
 }
 
-.sidebar-header {
-  padding: 1rem;
+.employee-list-table img.employee_image {
+  width: 40px; /* Adjust based on your preference */
+  height: 40px; /* Adjust to match width for a perfect circle */
+  border-radius: 50%; /* This creates the round effect */
+  object-fit: cover; /* Ensures the image covers the area without losing its aspect ratio */
+}
+
+.btn-add-employee {
+  padding: 10px 15px;
+  background-color: #e5101e; /* Green background */
+  color: white; /* White text */
+  text-decoration: none; /* Remove underline from link */
+  border: none;
+  border-radius: 5px; /* Slightly round the button corners */
+}
+
+.btn {
+  padding: 5px 10px; /* Adjust button padding */
+  border-radius: 5px; /* Round corners */
+  border: none; /* Remove border */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-right: 5px; /* Add a little space between buttons */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Blue background for primary buttons */
+  color: white; /* White text */
+}
+
+.btn-danger {
+  background-color: #dc3545; /* Red background for danger buttons */
+  color: white; /* White text */
+}
+
+.btn-sm {
+  padding: .25rem .5rem; /* Smaller padding for small buttons */
+  font-size: .875rem; /* Smaller font size for small buttons */
+  line-height: 1.5; /* Adjust line height for better visibility */
+  border-radius: .2rem; /* Slightly round the button corners */
+}
+
+/* Responsive adjustments for better viewing on mobile devices */
+@media (max-width: 768px) {
+  .employee-list-header {
+    flex-direction: column; /* Stack header items vertically on smaller screens */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .btn-add-employee {
+    margin-top: 10px; /* Add space between header items when stacked */
+  }
+
+  .employee-list-table {
+    display: block;
+    overflow-x: auto; /* Allow table to scroll horizontally on small devices */
+  }
+}
+
+.userlist-container {
+  padding: 20px;
+  background-color: #f5f5f5; /* Light gray background */
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-table thead {
+  background-color: #333; /* Dark header for contrast */
+  color: white;
+}
+
+.user-table th,
+.user-table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd; /* Light border for each row */
+}
+/* AddUser.css */
+.add-user-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: white;
+}
+
+.add-user-form label {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.add-user-form input[type="text"],
+.add-user-form input[type="email"],
+.add-user-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-user-form fieldset {
+  border: none;
+  margin: 20px 0;
+}
+
+.add-user-form legend {
+  margin-bottom: 10px;
+}
+
+.add-user-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-user-form input[type="radio"] {
+  margin-right: 5px;
+}
+
+.form-actions {
+  text-align: right;
+  padding-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+}
+
+.save-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+/* AddCategory Form Styling */
+.add-category-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh; /* Full height of the viewport */
+  padding: 20px; /* Spacing around the form container */
 }
 
-/* Logo image styles */
-.sidebar-logo {
-  max-width: 100%;
-  height: auto; /* Maintain aspect ratio */
+.form-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px; /* Max width of the form */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Spacing between form groups */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333; /* Dark gray for text */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px;
+  box-sizing: border-box; /* Border box sizing */
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.form-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white; /* White text for buttons */
+}
+
+.form-btn[type="submit"] {
+  background-color: #007bff; /* Bootstrap primary blue */
+}
+
+.form-btn[type="button"] {
+  background-color: #6c757d; /* Bootstrap secondary gray */
+}
+
+.form-btn:hover {
+  opacity: 0.9; /* Slight opacity on hover for interaction feedback */
+}
+
+/* Additional styles for reset button to make it slightly different */
+.form-btn.reset {
+  background-color: #dc3545; /* Bootstrap danger red */
+}
+
+/* Style to make the 'Fill form' button stand out */
+.form-btn.fill {
+  background-color: #28a745; /* Bootstrap success green */
+}
+
+.tasks-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  background-color: #f0f0f0; /* Light grey background */
+}
+
+.task-category {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow to the categories */
+}
+
+.task-card {
+  background-color: #eaeaea; /* Lighter grey for task cards */
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.task-users span {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 0.8em;
+}
+
+.add-task-btn {
+  background: none;
+  border: none;
+  color: #007bff; /* Bootstrap primary blue */
+  padding: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+/* Add responsive adjustments as necessary */
+@media (max-width: 768px) {
+  .tasks-container {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+  }
 }
 
 
-
-  
-  
-  /* Add more styling as needed */
-  
+/* Add any additional styling for your table here */

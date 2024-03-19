@@ -7,13 +7,16 @@ import Dashboard from "./Components/Dashboard";
 import Home from "./Components/Home";
 import Category from "./Components/Category";
 import Employee from "./Components/Employee";
-import Profile from "./Components/Profile";
 import AddCategory from "./Components/AddCategory";
 import AddEmployee from "./Components/AddEmployee";
 import EditEmployee from "./Components/EditEmployee";
 import Start from "./Components/Start";
 import EmployeeLogin from "./Components/EmployeeLogin";
 import EmployeeDetail from "./Components/EmployeeDetail";
+import Tasks from "./Components/Tasks";
+import Users from "./Components/Users";
+import AddUser from "./Components/AddUser";
+import AddTask from "./Components/AddTask";
 
 // PrivateRoute component to protect routes
 const PrivateRoute = ({ element }) => {
@@ -38,7 +41,9 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="/dashboard/employee" element={<Employee />} />
           <Route path="/dashboard/category" element={<Category />} />
-          <Route path="/dashboard/profile" element={<Profile />} />
+          <Route path="/dashboard/task" element={<Tasks />} />
+          <Route path="/dashboard/users" element={<Users />} />
+
           <Route
             path="/dashboard/add_category"
             element={<AddCategory />}
@@ -51,6 +56,10 @@ function App() {
             path="/dashboard/edit_employee/:id"
             element={<EditEmployee />}
           ></Route>
+          <Route path="/dashboard/add_user" element={<AddUser />} />
+          <Route path="/dashboard/add_task" element={<AddTask />} />
+
+
         </Route>
       </Routes>
     </BrowserRouter>
@@ -58,7 +67,6 @@ function App() {
 }
 
 export default App;
-
 
 // import React from 'react'
 // import Login from './Login'

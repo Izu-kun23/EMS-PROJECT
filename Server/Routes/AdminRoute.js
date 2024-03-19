@@ -44,6 +44,26 @@ router.post('/add_category', (req, res) => {
     })
 })
 
+router.post('/add_user', (req, res) => {
+  const { email, password } = req.body; // Destructure email and password from the request body
+
+  // Ensure both email and password are provided
+  if (!email || !password) {
+    return res.status(400).json({Status: false, Error: "Email and password are required"});
+  }
+
+  const sql = "INSERT INTO admin (`email`, `password`) VALUES (?, ?)"; // Correct SQL statement
+
+  con.query(sql, [email, password], (err, result) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.json({Status: false, Error: "Query Error"});
+    }
+    return res.json({Status: true, Result: result});
+  });
+});
+
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
       cb(null, 'Public/Images')
@@ -78,6 +98,9 @@ router.post('/add_employee',upload.single('image'), (req, res) => {
       })
   })
 })
+
+
+
 
 router.get('/employee', (req, res) => {
   const sql = "SELECT * FROM employee";
@@ -159,6 +182,8 @@ router.get('/logout', (req, res) => {
   res.clearCookie('token')
   return res.json({Status: true})
 })
+
+
 
 
 
