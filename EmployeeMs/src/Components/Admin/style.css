@@ -1,0 +1,1735 @@
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+/* Main container for the login page */
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #3b5394; /* Light blue background, similar to the image */
+}
+
+/* Login form styling */
+.loginForm {
+  background-color: #3556d1; /* White background */
+  padding: 20px 40px 40px; /* Padding inside the form */
+  border-radius: 10px; /* Rounded corners for the form */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 100%;
+  max-width: 400px; /* Maximum width with full width on small screens */
+  position: relative; /* Position relative for absolute positioning of children */
+}
+
+/* Image styling */
+.login-image {
+  max-width: 80%; /* Maximum width of the image */
+  margin: 0 auto 30px; /* Centering the image with margin */
+  display: block; /* Block display to enable margin auto */
+}
+
+/* Form title */
+.loginForm h2 {
+  font-size: 1.5em; /* Size of the form title */
+  color: #333; /* Color of the form title */
+  margin-bottom: 1em; /* Space below the title */
+}
+
+/* Input fields */
+.loginForm input[type="email"],
+.loginForm input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 1em;
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 5px; /* Rounded border edges */
+}
+
+/* Login button */
+.loginForm button {
+  width: 100%;
+  padding: 10px;
+  background-color: #667eea; /* Button background color */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 20px; /* Rounded button edges */
+  margin-top: 20px; /* Margin top for spacing */
+  cursor: pointer;
+}
+
+/* Button hover effect */
+.loginForm button:hover {
+  background-color: #5867c3; /* Darker shade on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .loginForm {
+    width: 90%; /* Full width on smaller screens */
+    padding: 20px; /* Less padding on smaller screens */
+  }
+}
+
+/* Optional: Add icons to your social buttons using a web font or SVGs */
+
+
+
+/* General Reset and Base Styles */
+/* Reset some default styles */
+/* style.css */
+/* style.css */
+
+.logo-container {
+  height: 32px;
+  margin: 16px;
+}
+
+.logo {
+  width: 100%;
+}
+
+.logo-collapsed {
+  width: 32px;
+}
+
+.ant-layout-sider {
+  min-width: 200px; /* Set minimum width for the Sider */
+}
+
+.ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+}
+
+.ant-menu-inline {
+  border-right: none;
+}
+
+.ant-menu-item, .ant-menu-submenu-title {
+  font-weight: bold; /* Set font weight to bold for menu items */
+  text-decoration: none; /* Remove underline from links */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Add left padding for submenu titles */
+.ant-menu-submenu-title {
+  padding-left: 20px;
+}
+
+/* Adjust padding for menu items */
+.ant-menu-item {
+  padding-left: 24px !important;
+}
+
+.ant-layout-content {
+  margin-left: 16px; 
+  background-color: #ffffff;/* Adjust content margin to match collapsed Sider width */
+}
+
+.ant-layout-header {
+  padding: 0 16px; /* Add padding to Header */
+}
+
+.ant-btn-link {
+  color: inherit; /* Inherit link color for buttons */
+}
+
+.message-icon, .profile-icon {
+  color: #1d54ba; /* Change to the color you prefer */
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color: rgb(232, 231, 231);
+  color: rgb(58, 58, 58);
+  font-family: 'Montserrat', sans-serif;
+}
+/* /src/style.css */
+
+.stats-section {
+  display: flex; /* align children horizontally */
+  flex-wrap: wrap; /* allows wrapping of items if the container's width is exceeded */
+  justify-content: space-evenly; /* adjust the justification if needed */
+  gap: 10px; /* reduced space between the cards */
+}
+
+.MuiPaper-root {
+  border-radius: 20px; /* rounded corners */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  max-height: 150px; /* fixed maximum height */
+  overflow: hidden; /* ensure content respects border radius */
+  background-color: #ffffff; /* white background */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* space between card content and bottom text */
+  flex: 1 1 30%; /* increased flex-basis to give more width */
+  max-width: 550px; /* increased max-width for larger card width */
+  margin: auto; /* keeps the card centered */
+}
+
+.MuiCardContent-root {
+  padding: 8px; /* padding inside the card */
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between; /* space elements inside the card */
+  align-items: center; /* align items vertically */
+}
+
+/* Add styles for the bottom part of the card that has the text about profit changes */
+.jss86 {
+  background-color: #1651b1; /* color from the image */
+  color: white; /* text color */
+  padding: 8px 16px; /* padding */
+  font-size: 0.875rem; /* similar to MuiTypography-body2 */
+  display: flex;
+  justify-content: space-between; /* space between texts */
+  align-items: center; /* align items vertically */
+}
+
+/* Style icons to be larger and the color to match the design */
+.FaUserTie, .FaUsers, .FaDollarSign {
+  font-size: 2.5rem; /* larger size for icons */
+  color: #1651b1;; /* matching the color scheme of the image */
+  padding: 4px; /* add if you need some space around the icon */
+}
+
+/* If you have specific hover effects or other interactive states for the icons, you can add them here */
+.FaUserTie:hover, .FaUsers:hover, .FaDollarSign:hover {
+  color: #1651b1;; /* slightly darker on hover */
+}
+
+/* Ensure that text in the bottom part of the card stands out */
+.jss86 p {
+  margin: 0; /* Remove default margins if necessary */
+  color: white; /* Ensures text is white */
+  font-weight: bold; /* If you want the text to be bold */
+  padding: 4px 16px; 
+}
+
+/* Ensure the up-trend arrow icon in the .jss86 div matches the styling */
+.jss86 svg {
+  fill: white; /* Color the SVG icon white */
+  width: 24px; /* Match icon size to your design */
+  height: 24px; /* Match icon size to your design */
+}
+.MuiTypography-root {
+  margin-top: 4px;
+  margin-bottom: 4px; 
+}
+
+/* Adjust the max-width for larger screens if needed */
+@media screen and (min-width: 1200px) {
+  .MuiPaper-root {
+    max-width: 280px; /* updated max-width for larger screens to make the card shorter */
+  }
+}
+
+
+.admin-list-section,
+.chart-section {
+  width: 100%;
+  max-width: 1200px; /* Adjust max-width as needed */
+  margin-top: 20px;
+}
+
+.admin-list-section table,
+.chart-section {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+.admin-list-section {
+  margin-top: 20px;
+}
+
+.admin-list-section table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-list-section th,
+.admin-list-section td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-list-section th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.admin-list-section tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.admin-list-section tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.admin-list-section tbody td:last-child {
+  color: green; /* Set the color of the status column */
+}
+/* Table styles */
+/* Table Container */
+.table-container {
+  overflow-x: auto; /* For responsiveness: enables horizontal scrolling on smaller screens */
+  margin-top: 20px;
+}
+
+/* Table Styles */
+.table {
+  width: 100%; /* Full-width table */
+  border-collapse: collapse; /* Collapse borders */
+  background-color: #2a2a2a; /* Table background */
+}
+
+/* Table Head Styles */
+.table th {
+  background-color: #d7d7d7; /* Darker background for header */
+  color: #000000; /* White text color */
+  padding: 12px 15px; /* Spacing within cells */
+  border: 1px solid #3a3a3a; /* Solid borders for cells */
+  text-align: left; /* Align text to the left */
+  font-size: 14px; /* Font size for headers */
+}
+
+/* Table Body Styles */
+.table td {
+  padding: 10px 15px; /* Spacing within cells */
+  border: 1px solid #3a3a3a; /* Solid borders for cells */
+  color: #000000; /* Light text color for the content */
+  font-size: 13px; /* Font size for content */
+}
+
+/* Zebra Striping for Rows */
+.table tr:nth-child(odd) {
+  background-color: #323232; /* Slightly lighter for odd rows */
+}
+
+/* Hover Effect for Rows */
+.table tr:hover {
+  background-color: #464646; /* Highlight on hover */
+  cursor: pointer; /* Indicates the row is clickable */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table {
+    font-size: 12px; /* Smaller font size on small screens */
+  }
+  .table th, .table td {
+    padding: 8px; /* Smaller padding on small screens */
+  }
+}
+
+/* Add more responsive breakpoints and styles as needed */
+
+
+/* Add other responsive breakpoints and styles as needed */
+
+
+/* Sidebar basic styles */
+.sidebar {
+  background-color: #1555e0; /* Dark blue background */
+  color: rgb(0, 0, 0);
+  width: 250px; /* Expanded width */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease, transform 0.3s ease;
+  overflow-y: auto; /* Scrollable */
+  z-index: 1000; /* Ensure sidebar is above other content */
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  align-items: center; /* Center children horizontally when collapsed */
+  padding-top: 20px; /* Top padding for aesthetic spacing from the top */
+}
+
+/* Collapsed state */
+.sidebar.collapsed {
+  width: 80px; /* Width to only show icons */
+}
+
+.nav-link {
+  width: 100%; /* Ensure link utilizes full width for better click area */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content (icon + text) */
+  padding: 12px 15px; /* Increased padding for more space around items */
+  text-align: center; /* Ensure text is centered, useful for when text wraps */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Optional: adds a subtle separator */
+}
+.nav-link:hover {
+  background-color: #2445bf; /* Slightly darker blue on hover for contrast */
+  color: #ffffff; /* Ensure text color is white for readability */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link .icon {
+  margin-right: 10px; /* Space between icon and text */
+}
+
+/* Hide text when sidebar is collapsed */
+.sidebar.collapsed .nav-link span {
+  display: none;
+}
+
+/* Toggle button styling */
+.menu-toggle {
+  cursor: pointer;
+  position: fixed;
+  z-index: 5;
+  top: 15px;
+  left: calc(100% - 45px); /* Adjust based on your layout */
+  background-color: #007bff; /* Bootstrap blue */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Main content adjustment */
+.main-content {
+  transition: margin-left 0.3s;
+  margin-left: 250px; /* Adjusted for expanded sidebar */
+}
+
+.main-content.expanded {
+  margin-left: 80px; /* Adjust for collapsed sidebar width */
+}
+
+/* Additional adjustments for responsiveness and more */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px; /* Keep sidebar collapsed on mobile */
+  }
+  .main-content, .main-content.expanded {
+    margin-left: 0; /* Full width content on small screens */
+  }
+}
+
+
+/* ... other styles remain unchanged ... */
+
+/* Toggle Button Styling */
+.menu-toggle {
+  position: fixed;
+  top: 15px;
+  left: calc(100% - 60px); /* Positioned right of the sidebar */
+  background-color: #1265b8;; /* Bootstrap primary blue */
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  z-index: 1001; /* Above the sidebar */
+}
+
+/* Logo Styling */
+/* style.css */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.logo-collapsed {
+  display: none;
+}
+
+
+
+
+/* Form Styling */
+.form-group input:hover,
+.form-btn:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+.form-btn {
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.form-btn:hover {
+  background-color: darken(#007bff, 5%);
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .sidebar,
+  .main-content,
+  .main-content.expanded {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .menu-toggle {
+    left: 15px; /* Adjust toggle button to be visible on small screens */
+  }
+}
+
+/* style.css */
+.employee-list-container {
+  padding: 20px;
+}
+
+.employee-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-add-employee {
+  padding: 10px;
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.search-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.employee-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.employee-card {
+  background-color: #fff;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: relative;
+}
+
+.employee-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.employee-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.employee-details {
+  flex-grow: 1;
+}
+
+.employee-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.btn {
+  padding: 8px 12px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+
+/* Add any additional styling or adjustments as needed */
+
+
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.userlist-container {
+  padding: 20px;
+}
+
+.userlist-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.btn-add-user, .btn-edit, .btn-delete {
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-add-user {
+  background-color: #4CAF50; /* Green */
+}
+
+.btn-edit {
+  background-color: #2196F3; /* Blue */
+  margin-right: 10px;
+}
+
+.btn-delete {
+  background-color: #f44336; /* Red */
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table, .user-table th, .user-table td {
+  border: 1px solid #ddd;
+}
+
+.user-table th, .user-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}
+
+/* AddUser.css */
+.add-user-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: white;
+}
+
+.add-user-form label {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.add-user-form input[type="text"],
+.add-user-form input[type="email"],
+.add-user-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-user-form fieldset {
+  border: none;
+  margin: 20px 0;
+}
+
+.add-user-form legend {
+  margin-bottom: 10px;
+}
+
+.add-user-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-user-form input[type="radio"] {
+  margin-right: 5px;
+}
+
+.form-actions {
+  text-align: right;
+  padding-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+}
+
+.save-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+/* AddCategory Form Styling */
+.add-category-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height of the viewport */
+  padding: 20px; /* Spacing around the form container */
+}
+
+.form-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px; /* Max width of the form */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Spacing between form groups */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333; /* Dark gray for text */
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px;
+  box-sizing: border-box; /* Border box sizing */
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.form-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white; /* White text for buttons */
+}
+
+.form-btn[type="submit"] {
+  background-color: #007bff; /* Bootstrap primary blue */
+}
+
+.form-btn[type="button"] {
+  background-color: #6c757d; /* Bootstrap secondary gray */
+}
+
+.form-btn:hover {
+  opacity: 0.9; /* Slight opacity on hover for interaction feedback */
+}
+
+/* Additional styles for reset button to make it slightly different */
+.form-btn.reset {
+  background-color: #dc3545; /* Bootstrap danger red */
+}
+
+/* Style to make the 'Fill form' button stand out */
+.form-btn.fill {
+  background-color: #28a745; /* Bootstrap success green */
+}
+
+.tasks-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  background-color: #f0f0f0; /* Light grey background */
+}
+
+.task-category {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds shadow to the categories */
+}
+
+.task-card {
+  background-color: #eaeaea; /* Lighter grey for task cards */
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.task-users span {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 0.8em;
+}
+
+.add-task-btn {
+  background: none;
+  border: none;
+  color: #007bff; /* Bootstrap primary blue */
+  padding: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+/* Add responsive adjustments as necessary */
+@media (max-width: 768px) {
+  .tasks-container {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+  }
+}
+
+.nav-item .dropdown-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  padding-left: 20px; /* Indent dropdown items */
+  background-color: #007bff; /* Bootstrap primary blue */
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+/* Dropdown Item Styles */
+.dropdown-item {
+  padding: 5px 0;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  background-color: #007bff; /* Ensure consistent background color */
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: #0056b3; /* Darker shade of blue for hover and focus effect */
+  outline: none; /* Remove outline for focused links */
+}
+
+/* Ensure the dropdown-toggle button also maintains consistent style on focus */
+.dropdown-toggle:focus {
+  outline: none; /* Remove outline for focused button */
+  box-shadow: none; /* Remove any box-shadow if applied by browser/user-agent styles */
+}
+
+/* Icons for dropdown control */
+.nav-item .ExpandMoreIcon,
+.nav-item .ExpandLessIcon {
+  font-size: 1rem; /* Adjust icon size */
+  margin-left: 5px; /* Spacing between text and icon */
+  color: rgba(76, 130, 192, 0.645); /* Icon color */
+}
+
+/* Additional styling for hover effect on dropdown items */
+.nav-item:hover .dropdown-toggle {
+  background-color: #0056b3; /* Darker shade of blue for hover effect */
+}
+
+/* Add any additional styling for your table here */
+.task-table-container {
+  font-family: 'Arial', sans-serif;
+  overflow-x: auto;
+  margin: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.task-table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+.task-table th, .task-table td {
+  text-align: left;
+  padding: 8px;
+}
+
+.task-table th {
+  position: sticky;
+  top: 0;
+}
+
+.task-table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.status {
+  font-weight: bold;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.status.completed {
+  background-color: green;
+}
+
+.status.failed {
+  background-color: red;
+}
+
+.status.inprogress {
+  background-color: orange;
+}
+
+.btn-edit, .btn-delete {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  margin-right: 5px;
+}
+
+/* Add other styles such as hover effects, fonts, and icons as needed. */
+
+/* AddTaskForm.css */
+.add-task-form {
+  max-width: 500px; /* Adjust width as needed */
+  margin: 2rem auto; /* Center the form on the page with some margin */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to lift the form off the page */
+  border-radius: 8px; /* Slightly rounded corners for a softer look */
+  background-color: #ffffff; /* White background */
+}
+
+.add-task-form h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px; /* Spacing between the title and the form fields */
+}
+
+.add-task-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-task-form form > div {
+  margin-bottom: 15px; /* Spacing between each form field */
+}
+
+.add-task-form label {
+  font-size: 16px;
+  margin-bottom: 5px; /* Small space between label and input */
+  color: #333;
+  display: block; /* Ensure the label takes up its own line */
+}
+
+.add-task-form input[type="text"],
+.add-task-form input[type="date"],
+.add-task-form textarea,
+.add-task-form select {
+  width: 100%; /* Make form fields take up all available width */
+  padding: 10px;
+  border-radius: 4px; /* Slightly rounded edges on inputs */
+  border: 1px solid #ccc; /* Light grey border */
+}
+
+.add-task-form textarea {
+  resize: vertical; /* Allows the textarea to only be resized vertically */
+}
+
+.add-task-form button {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.add-task-form button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.chart-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+}
+
+.chart-section h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Adjust the size of the chart canvas */
+.canvas-container {
+  width: 100%;
+  height: 400px; /* Adjust height as needed */
+}
+
+/* Adjust the color of the axes and grid lines */
+.chart-section .chartjs-chart {
+  border: 1px solid #ddd;
+  max-width: 75%;
+  margin: auto; 
+}
+.custom-grid {
+  stroke: #ddd;
+}
+
+.custom-axis {
+  fill: #555;
+}
+
+.custom-line {
+  stroke-width: 2;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+/* Custom CSS for Dashboard */
+
+/* Background color for the layout */
+.ant-layout {
+  background-color: #f0f2f5; /* Change to your desired background color */
+}
+
+/* Background color for the header */
+.site-layout .ant-layout-header {
+  background-color: #ffffff; /* Change to your desired background color */
+}
+
+/* Text color for welcome message */
+.welcome-message {
+  color: #333333; /* Change to your desired text color */
+}
+/* Custom CSS for Dashboard */
+
+/* Background color for the Sider */
+.ant-layout-sider {
+  background-color: #094f91 !important; /* Change to your desired background color */
+}
+.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-dark {
+  background-color: #094f91;
+}
+
+.ant-layout-sider.ant-layout-sider-inline {
+  background-color:  #094f91; /* Change to your desired background color */
+}
+
+/* Text color for menu items in the Sider */
+.ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title {
+  color: #ffffff !important; /* Change to your desired text color */
+}
+
+.ant-menu.ant-menu-root.ant-menu-vertical.ant-menu-dark.ant-menu-inline-collapsed {
+  background-color: #094f91;
+}
+
+/* Style submenu items */
+.ant-menu.ant-menu-sub.ant-menu-inline {
+  background-color: #094f91;
+}
+
+.ant-menu.ant-menu-sub.ant-menu-inline .ant-menu-item {
+  background-color: #094f91;
+}
+
+.ant-menu.ant-menu-sub.ant-menu-inline .ant-menu-submenu-title {
+  background-color: #094f91;
+}
+
+
+/* Background color for selected menu item in the Sider */
+.ant-menu-inline .ant-menu-item-selected, .ant-menu-inline .ant-menu-submenu-selected {
+  background-color: #1890ff !important; /* Change to your desired background color */
+}
+
+
+/* Background color for the profile icon */
+.profile-icon {
+  color: #ff4d4f; /* Change to your desired icon color */
+}
+
+
+/* style.css */
+
+.task-list-container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.task-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-add-task {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+
+/* Add this CSS to make the image a larger circle in EmployeeDetail */
+.emp_det_image {
+  width: 500px; /* Adjust the width as needed for a larger circle */
+  height: 500px; /* Adjust the height to maintain a circular shape */
+  border-radius: 50%; /* Make the image a circle */
+  object-fit: cover; /* Ensure the image covers the entire circle */
+}
+
+/* Additional styles for the component container */
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+/* Add more styles as needed */
+/* style.css */
+
+/* Container styling */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input field styling */
+label {
+  margin-bottom: 10px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Submit button styling */
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* style.css */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.ant-badge {
+  position: relative;
+  top: -2px; /* Adjust this value to bring the badge closer or move it away */
+}
+
+
+/* style.css */
+
+.notes-app-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.note-card {
+  position: relative;
+  background-color: #fff;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.note-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.note-card p {
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.note-card hr {
+  margin-top: 8px;
+  border: 1px solid #ddd;
+}
+
+.kebab-menu {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  color: #dc3545;
+  transition: color 0.3s ease;
+}
+
+.kebab-menu:hover {
+  color: #a52a2a;
+}
+
+/* File path: src/style.css */
+/* File path: src/style.css */
+
+.calendar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ddd;
+}
+
+.header span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header button {
+  padding: 5px 10px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.header button:hover {
+  background-color: #d0d0d0;
+}
+
+.header button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.week-days {
+  display: flex;
+}
+
+.week-day {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+}
+
+.days-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day {
+  width: calc(100% / 7);
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  min-height: 100px; /* Adjust the height as needed */
+  position: relative;
+}
+
+.day.blank {
+  background-color: #f7f7f7;
+}
+
+.day.has-appointment {
+  background-color: #e3f2fd;
+}
+
+.appointment {
+  margin-top: 4px;
+  padding: 2px 4px;
+  background-color: #c5e1a5;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Add to your style.css */
+
+.form-control {
+  margin: 20px 0;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control input[type="date"],
+.form-control input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-control input[type="text"]:focus,
+.form-control input[type="date"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.btn-save {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn-save:hover {
+  opacity: 1;
+}
+.MuiCard-root {
+  width: 200px; /* Adjust the width as needed */
+  height: 300px; /* Adjust the height as needed */
+  border-radius: 8px; /* Add border-radius for rectangular shape */
+  display: flex;
+  flex-direction: column; /* Set vertical positioning */
+}
+
+.employee-tasks-container {
+  width: 80%;
+  margin: auto;
+}
+
+.tasks-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.task-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.task-item {
+  width: 50%;
+  padding: 10px;
+}
+
+.task-box {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  height: 100%;
+}
+
+.task-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.task-description {
+  font-size: 16px;
+  color: #555;
+}
+
+.footer {
+  background-color: #001529;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section p,
+.footer-section ul {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li::before {
+  content: "› ";
+  color: #1890ff;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ffffff40;
+  width: 100%;
+  max-width: 1200px;
+  padding-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+.add-attendance-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.attendance-icons {
+  display: flex;
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.selected {
+  color: green; /* Adjust the color for the selected icon */
+}
+
+.selected.fa-times {
+  color: red; /* Adjust the color for the "absent" icon */
+}
+
+.selected.fa-sticky-note {
+  color: orange; /* Adjust the color for the "request" icon */
+}
+
+/* /src/components/Timesheet.css */
+
+.timesheet-container {
+  margin: 20px;
+}
+
+.timesheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.timesheet-table thead {
+  background-color: #f0f0f0;
+}
+
+.timesheet-table th,
+.timesheet-table td {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.edit-btn, .delete-btn {
+  /* Add your styles for buttons */
+}
+
+.add-template-btn {
+  float: right;
+  margin-top: 10px;
+  /* Add your styles for the button */
+}
+
+/* /src/components/AddTimesheet.css */
+
+.add-timesheet-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.notification {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.notification.success {
+  background-color: #4CAF50;
+}
+
+.notification button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.notification button:hover {
+  color: black;
+}
