@@ -9,31 +9,50 @@ const EmployeePay = () => {
   const [payslips, setPayslips] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // Mock data for payslips
+  const mockPayslips = [
+    {
+      key: '1',
+      date: '2024-04-01',
+      amount: '2500.00',
+      details: 'Salary for March',
+      deductions: '200.00',
+      netPay: '2300.00',
+    },
+    {
+      key: '2',
+      date: '2024-05-01',
+      amount: '2500.00',
+      details: 'Salary for April',
+      deductions: '200.00',
+      netPay: '2300.00',
+    },
+    {
+      key: '3',
+      date: '2024-06-01',
+      amount: '2600.00',
+      details: 'Salary for May - Bonus included',
+      deductions: '210.00',
+      netPay: '2390.00',
+    },
+    // ... more payslips
+  ];
+
   useEffect(() => {
-    // Load initial payslips when component mounts
-    loadPayslips();
+    // Replace with actual data load function in production
+    setLoading(true);
+    setTimeout(() => {
+      setPayslips(mockPayslips); // Use the mock data
+      setLoading(false);
+    }, 1000); // Simulate a network request delay
   }, []);
 
   const loadPayslips = async (dates) => {
-    setLoading(true);
-    try {
-      // Fetch payslips data from API based on selected dates
-      const response = await axios.get('http://localhost:3000/employee/pay', {
-        params: {
-          startDate: dates ? dates[0].format('YYYY-MM-DD') : null,
-          endDate: dates ? dates[1].format('YYYY-MM-DD') : null,
-        },
-      });
-      setPayslips(response.data);
-    } catch (error) {
-      console.error('Error fetching payslips:', error);
-    } finally {
-      setLoading(false);
-    }
+    // Replace this with actual data loading logic in production
   };
 
   const handleDateChange = (dates) => {
-    loadPayslips(dates);
+    // Replace this with actual date range filtering logic in production
   };
 
   const columns = [
@@ -47,7 +66,22 @@ const EmployeePay = () => {
       dataIndex: 'amount',
       key: 'amount',
     },
-    // Add more columns as needed
+    // Optionally, you can add more columns based on your mock data
+    {
+      title: 'Details',
+      dataIndex: 'details',
+      key: 'details',
+    },
+    {
+      title: 'Deductions',
+      dataIndex: 'deductions',
+      key: 'deductions',
+    },
+    {
+      title: 'Net Pay',
+      dataIndex: 'netPay',
+      key: 'netPay',
+    },
   ];
 
   return (
@@ -55,7 +89,7 @@ const EmployeePay = () => {
       <h1>Your Payslips</h1>
       <RangePicker onChange={handleDateChange} />
       <Spin spinning={loading}>
-        <Table columns={columns} dataSource={payslips} />
+        <Table columns={columns} dataSource={payslips} rowKey="key" />
       </Spin>
     </div>
   );

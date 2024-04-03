@@ -70,37 +70,41 @@ router.get('/profile/:id', (req, res) => {
   });
   
   
-  
-  router.post('/employee_add_timesheet/:id', async (req, res) => {
-    const employeeId = req.params.id;
+  router.post('/employee_add_timesheet', (req, res) => {
     const { date, startTime, endTime, hoursWorked, notes } = req.body;
   
-    try {
-      // Assuming you have a table named "timesheets" in your database
-      const result = await db.query(
-        'INSERT INTO timesheets (employee_id, date, start_time, end_time, hours_worked, notes) VALUES (?, ?, ?, ?, ?, ?)',
-        [employeeId, date, startTime, endTime, hoursWorked, notes]
-      );
-      
-      res.json({ success: true, message: 'Timesheet added successfully' });
-    } catch (error) {
-      console.error('Error adding timesheet:', error);
-      res.status(500).json({ success: false, message: 'Error adding timesheet' });
-    }
+    // Insert the timesheet data into the database
+    const sql = "INSERT INTO timesheet (date, start_time, end_time, hours_worked, notes) VALUES (?, ?, ?, ?, ?)";
+    con.query(sql, [date, startTime, endTime, hoursWorked, notes], (err, result) => {
+      if (err) {
+        console.error('Error adding timesheet:', err);
+        return res.status(500).json({ success: false, message: 'Error adding timesheet' });
+      } else {
+        return res.json({ success: true, message: 'Timesheet added successfully', id: result.insertId });
+      }
+    });
   });
   
+  
 
-  router.get('/employee_timesheets/:id', (req, res) => {
-    const employeeId = req.params.id;
-    const sql = "SELECT * FROM timesheets WHERE employee_id = ?";
-    con.query(sql, [employeeId], (err, result) => {
-        if (err) {
-            return res.json({ Status: false, Error: "Query Error" });
-        } else {
-            return res.json({ Status: true, Result: result });
-        }
+
+
+
+  router.get('/employee_timesheet', (req, res) => {
+    // SQL query to select all entries from the timesheet table
+    const sql = "SELECT * FROM timesheet";
+    con.query(sql, (err, results) => {
+      if (err) {
+        console.error('Error accessing database', err);
+        return res.status(500).json({ status: false, error: "Query Error" });
+      } else {
+        return res.json({ status: true, results });
+      }
     });
-});
+  });
+  
+  
+  
 
   
 

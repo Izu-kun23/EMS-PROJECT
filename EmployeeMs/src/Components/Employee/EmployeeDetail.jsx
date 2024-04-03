@@ -16,7 +16,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import EventIcon from "@mui/icons-material/Event";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
-const { Header, Sider, Content, Footer} = Layout;
+const { Header, Sider, Content, Footer } = Layout;
 
 const EmployeeDetail = () => {
   const [employee, setEmployee] = useState({});
@@ -24,12 +24,20 @@ const EmployeeDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/employee/detail/${id}`)
-      .then((result) => {
-        setEmployee(result.data[0]);
-      })
-      .catch((err) => console.log(err));
+    const fetchEmployeeDetail = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/employee/detail/${id}`);
+        if (response.data.length > 0) {
+          setEmployee(response.data[0]);
+        } else {
+          console.error("No employee found with the provided id");
+        }
+      } catch (error) {
+        console.error("Error fetching employee detail:", error);
+      }
+    };
+
+    fetchEmployeeDetail();
   }, [id]);
 
   axios.defaults.withCredentials = true;
