@@ -1,9 +1,10 @@
 import express from "express";
 import con from "../utils/db.js";
 import jwt from "jsonwebtoken";
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt'
 import multer from "multer";
 import path from "path";
+
 
 
 const router = express.Router();
@@ -83,6 +84,7 @@ router.post('/add_task', (req, res) => {
 });
 
 
+// image upload 
 // image upload 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

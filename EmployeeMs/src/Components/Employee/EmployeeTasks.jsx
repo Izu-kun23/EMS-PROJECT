@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import EventEmitter from 'events';
 import "./empstyle.css";
+
+const eventEmitter = new EventEmitter();
 
 const EmployeeTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -33,8 +36,8 @@ const EmployeeTasks = () => {
             );
             const employeeName = employee ? employee.name : "N/A";
             const categoryName = category ? category.name : "N/A";
-            const status =
-              localStorage.getItem(`task_status_${task.id}`) || "Pending";
+            const storedStatus = localStorage.getItem(`task_status_${task.id}`);
+            const status = storedStatus || task.status; // Use stored status if available
             const isOverdue = new Date(task.deadline) < new Date();
 
             return {
@@ -65,16 +68,8 @@ const EmployeeTasks = () => {
           }
         };
 
-        processResponse(
-          employeeResponse,
-          setEmployees,
-          "Error fetching employees:"
-        );
-        processResponse(
-          categoryResponse,
-          setCategories,
-          "Error fetching categories:"
-        );
+        processResponse(employeeResponse, setEmployees, "Error fetching employees:");
+        processResponse(categoryResponse, setCategories, "Error fetching categories:");
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -85,45 +80,28 @@ const EmployeeTasks = () => {
     fetchTasks();
   }, []);
 
-  const handleTaskClick = (taskId) => {
+  const handleStatusChange = async (taskId, newStatus) => {
+    // Update locally
     const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, showDropdown: true } : task
+      task.id === taskId ? { ...task, status: newStatus, showDropdown: false } : task
     );
     setTasks(updatedTasks);
-  };
 
-  const handleStatusChange = (taskId, status) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, status, showDropdown: false } : task
-    );
-    setTasks(updatedTasks);
-    localStorage.setItem(`task_status_${taskId}`, status);
-  };
+    // Store status in localStorage
+    localStorage.setItem(`task_status_${taskId}`, newStatus);
 
-  const getStatusColorClass = (status) => {
-    switch (status) {
-      case "Pending":
-        return "pending";
-      case "In Progress":
-        return "in-progress";
-      case "Completed":
-        return "completed";
-      case "Overdue":
-        return "overdue";
-      default:
-        return "";
+    // Emit an event to notify other components about the status change
+    eventEmitter.emit('taskStatusChange', { id: taskId, status: newStatus });
+
+    // Send update to backend
+    try {
+      const response = await axios.put(`http://localhost:3000/employee/update_task_status/${taskId}`, { status: newStatus });
+      if (!response.data.Status) {
+        console.error("Failed to update task status:", response.data.Error);
+      }
+    } catch (error) {
+      console.error("Error updating task status:", error);
     }
-  };
-
-  const formatDateTime = (dateTimeString) => {
-    const options = {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Date(dateTimeString).toLocaleString(undefined, options);
   };
 
   return (
@@ -131,7 +109,7 @@ const EmployeeTasks = () => {
       <h2>Your Tasks</h2>
       {loading ? (
         <div>Loading...</div>
-      ) : (
+      ) : tasks.length > 0 ? (
         <table className="task-table">
           <thead>
             <tr>
@@ -151,44 +129,35 @@ const EmployeeTasks = () => {
                   <input
                     type="checkbox"
                     checked={task.selected}
-                    onChange={() => handleTaskClick(task.id)}
+                    onChange={() => {}}
                   />
                 </td>
                 <td>{task.name}</td>
                 <td>{task.description}</td>
-                <td>{formatDateTime(task.deadline)}</td>
+                <td>{new Date(task.deadline).toLocaleString()}</td>
                 <td>{employees[task.employee_id]}</td>
                 <td>{categories[task.category_id]}</td>
                 <td className="status-cell">
-                  <div
-                    className={`status-circle ${getStatusColorClass(
-                      task.status
-                    )}`}
-                    onClick={() => handleTaskClick(task.id)}
-                  ></div>
-                  {task.showDropdown && (
-                    <select
-                      value={task.status}
-                      onChange={(e) =>
-                        handleStatusChange(task.id, e.target.value)
-                      }
-                    >
-                      <option value="Pending">Pending</option>
-                      <option value="In Progress">In Progress</option>
-                      <option value="Completed">Completed</option>
-                      {task.isOverdue && <option value="Overdue">Overdue</option>}
-                    </select>
-                  )}
+                  <select
+                    value={task.status}
+                    onChange={(e) => handleStatusChange(task.id, e.target.value)}
+                    className="status-dropdown"
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                    {task.isOverdue && <option value="Overdue">Overdue</option>}
+                  </select>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      ) : (
+        <p>No recent tasks.</p>
       )}
     </div>
   );
 };
 
 export default EmployeeTasks;
-
-               

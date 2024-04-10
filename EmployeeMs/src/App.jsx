@@ -31,6 +31,8 @@ import EmployeeCalender from "./Components/Employee/EmployeeCalender";
 import AddAttendance from "./Components/Admin/AddAttendance";
 import Attendance from "./Components/Admin/Attendance";
 import AddEmpTimesheet from "./Components/Employee/AddEmpTimesheet";
+import TImesheet from "./Components/Admin/TImesheet";
+import Payslips from "./Components/Admin/Payslips";
 
 // PrivateRoute component to protect routes
 const PrivateRoute = ({ element }) => {
@@ -71,6 +73,7 @@ function App() {
           <Route path="/dashboard/category" element={<Category />} />
           <Route path="/dashboard/tasks" element={<Tasks />} />
           <Route path="/dashboard/users" element={<Users />} />
+          <Route path="/dashboard/payslips" element={<Payslips />} />
           <Route path="/dashboard/add_category" element={<AddCategory />} />
           <Route path="/dashboard/add_employee" element={<AddEmployee />} />
           <Route
@@ -79,7 +82,7 @@ function App() {
           />
           <Route path="/dashboard/add_user" element={<AddUser />} />
           <Route path="/dashboard/add_attendance" element={<AddAttendance />} />
-          <Route path="/dashboard/attendance" element={<Attendance/>} />
+          <Route path="/dashboard/timesheet" element={<TImesheet/>} />
           <Route path="/dashboard/edit_user/:id" element={<EditUser />} />
           <Route path="/dashboard/add_task" element={<AddTask />} />
           <Route

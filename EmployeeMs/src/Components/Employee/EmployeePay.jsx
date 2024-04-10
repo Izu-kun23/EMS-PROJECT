@@ -36,6 +36,14 @@ const EmployeePay = () => {
       netPay: '2390.00',
     },
     // ... more payslips
+    {
+      key: '3',
+      date: '2024-06-01',
+      amount: '2600.00',
+      details: 'Salary for May - Bonus included',
+      deductions: '210.00',
+      netPay: '2390.00',
+    },
   ];
 
   useEffect(() => {

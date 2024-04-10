@@ -78,6 +78,9 @@ const Dashboard = () => {
             <Menu.Item key="5" icon={<ListAltIcon />}>
               <Link to="/dashboard/timesheet">Timesheet</Link>
             </Menu.Item>
+            <Menu.Item key="5" icon={<ListAltIcon />}>
+              <Link to="/dashboard/payslips">Payslips</Link>
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.Item key="6" icon={<CategoryIcon />}>
             <Link to="/dashboard/category">Category</Link>

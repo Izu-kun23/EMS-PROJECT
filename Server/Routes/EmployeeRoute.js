@@ -54,6 +54,8 @@ router.post("/employee_login", (req, res) => {
     });
 });
 
+
+
 router.get('/profile/:id', (req, res) => {
     const employeeId = req.user.id; // Assuming you have user authentication middleware and it sets the user ID in req.user
     const sql = "SELECT * FROM employee WHERE id = ?";
@@ -71,39 +73,72 @@ router.get('/profile/:id', (req, res) => {
   
   
   router.post('/employee_add_timesheet', (req, res) => {
-    const { date, startTime, endTime, hoursWorked, notes } = req.body;
+    const { employee_id, date, startTime, endTime, hoursWorked, notes } = req.body;
+  
+    // Validation for the required fields
+    if (!employee_id || !date || !startTime || !endTime || !hoursWorked) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
   
     // Insert the timesheet data into the database
-    const sql = "INSERT INTO timesheet (date, start_time, end_time, hours_worked, notes) VALUES (?, ?, ?, ?, ?)";
-    con.query(sql, [date, startTime, endTime, hoursWorked, notes], (err, result) => {
+    const sql = "INSERT INTO timesheet (employee_id, date, start_time, end_time, hours_worked, notes) VALUES (?, ?, ?, ?, ?, ?)";
+    con.query(sql, [employee_id, date, startTime, endTime, hoursWorked, notes], (err, result) => {
       if (err) {
         console.error('Error adding timesheet:', err);
-        return res.status(500).json({ success: false, message: 'Error adding timesheet' });
+        return res.status(500).json({ success: false, message: 'Error adding timesheet', error: err.message });
       } else {
         return res.json({ success: true, message: 'Timesheet added successfully', id: result.insertId });
       }
     });
   });
   
+  router.put('/employee/update_task_status/:taskId', async (req, res) => {
+    const { taskId } = req.params;
+    const { status } = req.body;
   
-
-
-
-
-  router.get('/employee_timesheet', (req, res) => {
-    // SQL query to select all entries from the timesheet table
-    const sql = "SELECT * FROM timesheet";
-    con.query(sql, (err, results) => {
-      if (err) {
-        console.error('Error accessing database', err);
-        return res.status(500).json({ status: false, error: "Query Error" });
-      } else {
-        return res.json({ status: true, results });
+    try {
+      const task = await TaskModel.findById(taskId); // Assuming TaskModel is your database model
+      if (!task) {
+        return res.status(404).send({ Status: false, Error: 'Task not found' });
       }
-    });
+      task.status = status;
+      await task.save();
+      res.send({ Status: true, Message: 'Task status updated successfully' });
+    } catch (error) {
+      res.status(500).send({ Status: false, Error: error.message });
+    }
   });
   
+  router.get('/employee_timesheet/:id', (req, res) => {
+    const employee_id = req.params.id;
+    const sql = "SELECT * FROM timesheet WHERE employee_id = ?";
+    con.query(sql, [employee_id], (err, result) => {
+        if (err) {
+            return res.json({ Status: false, Error: "Query Error" });
+        } else {
+            return res.json({ Status: true, Result: result });
+        }
+    });
+});
+
+
   
+// Task Count Endpoint
+router.get('/task_count/:id', (req, res) => {
+  const sql = "select count(id) as tasks from tasks";
+  con.query(sql, (err, result) => {
+      if(err) return res.json({Status: false, Error: "Query Error"+err})
+      return res.json({Status: true, Result: result})
+  })
+})
+
+router.get('/timesheet_count/:id', (req, res) => {
+  const sql = "select count(id) as timesheet from timesheet";
+  con.query(sql, (err, result) => {
+      if(err) return res.json({Status: false, Error: "Query Error"+err})
+      return res.json({Status: true, Result: result})
+  })
+})
   
 
   

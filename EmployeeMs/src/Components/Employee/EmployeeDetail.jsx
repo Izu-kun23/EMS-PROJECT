@@ -58,29 +58,7 @@ const EmployeeDetail = () => {
 
   const DashboardFooter = () => (
     <Footer style={{ textAlign: 'center', background: '#001529', color: 'white' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 50px' }}>
-        <div>
-          <p>About Us</p>
-          <p>Calaya Engineering Services is a limited liability Company incorporated under the laws of the Federal Republic of Nigeria, Republic of Equatorial Guinea, Congo, Malaysia, Mozambique, Angola and Spain since 2005.</p>
-        </div>
-        <div>
-          <p>Our Services</p>
-          <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li>Well Services</li>
-            <li>Inspection Services</li>
-            <li>Technical Manpower Support</li>
-            <li>Civil Engineering</li>
-            <li>Corrosion Management</li>
-            <li>Pipeline Construction</li>
-            <li>Facilities Management</li>
-            <li>Procurement Services</li>
-          </ul>
-        </div>
-        <div>
-          <p>Recent Post</p>
-          {/* Replace with dynamic post content */}
-        </div>
-      </div>
+
       <div>
         © 2024 Calaya Engineering Services Limited. All rights reserved.
       </div>

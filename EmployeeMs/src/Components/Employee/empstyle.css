@@ -127,33 +127,47 @@ v.profile-container {
     background-color: #f2f2f2;
   }
   
-  .status-cell {
-    position: relative;
-  }
-  
-  .status-circle {
-    width: 12px;
-    height: 12px;
+  .status-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 5px;
     border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
+    width: 20px;
+    height: 20px;
   }
   
-  .pending {
-    background-color: orange;
+  .status-select.Pending { background-color: #ffcc00; }
+  .status-select.InProgress { background-color: #007bff; }
+  .status-select.Completed { background-color: #28a745; }
+  .status-select.Overdue { background-color: #dc3545; }
+  
+  .status-dropdown {
+    appearance: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
   }
   
-  .in-progress {
-    background-color: yellow;
+  .status-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
   }
   
-  .completed {
-    background-color: green;
+  .status-dropdown option {
+    background-color: #fff;
+    color: #333;
   }
   
-  .overdue {
-    background-color: red;
+  .status-dropdown option:hover {
+    background-color: #007bff;
+    color: #fff;
   }
+  
   
   
 
