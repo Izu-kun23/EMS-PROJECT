@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import './style.css'; // Import CSS file for styling
 
 const Category = () => {
   const [categories, setCategories] = useState([]);
@@ -49,19 +50,16 @@ const Category = () => {
         });
     }
   };
-  
-  
-  
 
   return (
-    <div className='px-5 mt-3'>
-      <div className='d-flex justify-content-center'>
+    <div className='category-container'>
+      <div className='category-header'>
         <h3>CATEGORY LIST</h3>
       </div>
-      <Link to="/dashboard/add_category" className='btn btn-success' style={{ backgroundColor: '#ff1a8c', color: 'white' }}>
+      <Link to="/dashboard/add_category" className='btn btn-success add-category-btn'>
         ADD CATEGORY
       </Link>
-      <div className='mt-3'>
+      <div className='category-table'>
         <table className='table'>
           <thead>
             <tr>
@@ -74,10 +72,10 @@ const Category = () => {
               <tr key={category.id}>
                 <td>{category.name}</td>
                 <td>
-                  <button className='btn btn-primary' onClick={() => handleEdit(category.id)}>
+                  <button className='btn btn-primary edit-btn' onClick={() => handleEdit(category.id)}>
                     Edit
                   </button>
-                  <button className='btn btn-danger' style={{ marginLeft: '10px' }} onClick={() => handleDelete(category.id)}>
+                  <button className='btn btn-danger delete-btn' onClick={() => handleDelete(category.id)}>
                     Delete
                   </button>
                 </td>

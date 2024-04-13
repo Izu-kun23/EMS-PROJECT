@@ -10,58 +10,57 @@ const { Title, Text } = Typography;
 
 const ProfilePage = () => {
   const [employee, setEmployee] = useState({});
-  const [category, setCategory] = useState(''); // Initialize category state
-  const { id } = useParams(); // Use useParams to get the id from the URL
+  const [category, setCategory] = useState('');
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/employee/detail/${id}`)
-      .then(result => {
-        setEmployee(result.data[0]);
-        setLoading(false); // Set loading to false after data fetching
-      })
-      .catch(err => {
-        console.log(err);
-        setLoading(false); // Set loading to false in case of error
-      });
+    const fetchEmployeeDetails = async () => {
+      try {
+        const employeeResponse = await axios.get(`http://localhost:3000/employee/detail/${id}`);
+        const employeeData = employeeResponse.data[0];
+        setEmployee(employeeData);
+        setLoading(false);
 
-    // Fetch categories inside the useEffect hook
-    axios.get('http://localhost:3000/auth/category')
-      .then(response => {
-        if (response.data.Status) {
-          // Categories fetched successfully
-          const categories = response.data.Result;
-          // Assuming the employee's category ID is stored in employee.category_id
-          const employeeCategory = categories.find(cat => cat.id === employee.category_id);
+        const categoriesResponse = await axios.get('http://localhost:3000/auth/category');
+        if (categoriesResponse.data.Status) {
+          const categories = categoriesResponse.data.Result;
+          const employeeCategory = categories.find(cat => cat.id === employeeData.category_id);
           setCategory(employeeCategory ? employeeCategory.name : 'N/A');
         } else {
-          // Error occurred while fetching categories
-          console.error('Error fetching categories:', response.data.Error);
+          console.error('Error fetching categories:', categoriesResponse.data.Error);
         }
-      })
-      .catch(error => {
-        // Error occurred in making the request
-        console.error('Error fetching categories:', error);
-      });
-  }, [id]); // Add id to the dependency array to trigger effect on id change
+      } catch (error) {
+        console.error('Error fetching employee details:', error);
+        setLoading(false);
+      }
+    };
 
-  const handleLogout = () => {
-    axios.get('http://localhost:3000/employee/logout')
-      .then(result => {
-        if (result.data.Status) {
-          localStorage.removeItem("valid");
-          navigate('/');
-        }
-      })
-      .catch(err => console.log(err));
+    fetchEmployeeDetails();
+  }, [id]);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/employee/logout');
+      if (response.data.Status) {
+        localStorage.removeItem("valid");
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   };
 
   return (
     <div className="profile-container">
       <Card className="profile-card">
         <div>
-          <Avatar size={96} icon={<UserOutlined />} src={employee.image} className="profile-avatar" />
+          {employee.image ? ( // Check if employee image exists
+            <Avatar size={96} src={`http://localhost:3000/Images/${employee.image}`} className="profile-avatar" />
+          ) : (
+            <Avatar size={96} icon={<UserOutlined />} className="profile-avatar" />
+          )}
           <Title level={3} className="profile-name">{employee.name}</Title>
           <Text type="secondary" className="profile-role">{employee.category}</Text>
           <Divider className="profile-divider" />
@@ -76,7 +75,7 @@ const ProfilePage = () => {
             </div>
             <div>
               <Text strong>Department:</Text>
-              <Text>{category}</Text> {/* Display category name */}
+              <Text>{category}</Text>
             </div>
           </div>
         </div>

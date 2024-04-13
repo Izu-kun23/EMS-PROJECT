@@ -1,4 +1,3 @@
-
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -39,11 +38,18 @@ const Dashboard = () => {
   };
 
   const DashboardFooter = () => (
-    <Footer style={{ textAlign: 'center', background: '#001529', color: 'white' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 50px' }}>
-      © 2024 Calaya Engineering Services Limited. All rights reserved.
+    <Footer
+      style={{ textAlign: "center", background: "#001529", color: "white" }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "20px 50px",
+        }}
+      >
+        © 2024 Calaya Engineering Services Limited. All rights reserved.
       </div>
-      
     </Footer>
   );
 
@@ -52,11 +58,12 @@ const Dashboard = () => {
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo-container">
           <img
-            className={collapsed ? "logo-collapsed" : "logo"}
             src="/Images/logopic.png"
             alt="Logo"
+            style={{ width: collapsed ? "65px" : "150px" }} // Adjust the width dynamically
           />
         </div>
+
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1" icon={<DashboardIcon />}>
             <Link to="/dashboard">Dashboard</Link>
@@ -78,7 +85,7 @@ const Dashboard = () => {
             <Menu.Item key="5" icon={<ListAltIcon />}>
               <Link to="/dashboard/timesheet">Timesheet</Link>
             </Menu.Item>
-            <Menu.Item key="5" icon={<ListAltIcon />}>
+            <Menu.Item key="12" icon={<ListAltIcon />}>
               <Link to="/dashboard/payslips">Payslips</Link>
             </Menu.Item>
           </Menu.SubMenu>

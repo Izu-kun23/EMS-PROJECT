@@ -1,20 +1,20 @@
 /* eslint-disable no-unused-vars */
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, Link, Outlet } from "react-router-dom";
-import { Layout, Menu, Button, Input, Avatar } from "antd";
-import MenuFoldOutlined from "@mui/icons-material/MenuOpen";
-import MenuUnfoldOutlined from "@mui/icons-material/Menu";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import AddTaskIcon from "@mui/icons-material/AddTask";
-import SearchIcon from "@mui/icons-material/Search";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { UserOutlined } from "@ant-design/icons";
-import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
-import EventIcon from "@mui/icons-material/Event";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate, useParams, Link, Outlet } from 'react-router-dom';
+import { Layout, Menu, Button, Input, Avatar } from 'antd';
+import MenuFoldOutlined from '@mui/icons-material/MenuOpen';
+import MenuUnfoldOutlined from '@mui/icons-material/Menu';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import AddTaskIcon from '@mui/icons-material/AddTask';
+import SearchIcon from '@mui/icons-material/Search';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { UserOutlined } from '@ant-design/icons';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
+import EventIcon from '@mui/icons-material/Event';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const { Header, Sider, Content, Footer } = Layout;
 
@@ -30,10 +30,10 @@ const EmployeeDetail = () => {
         if (response.data.length > 0) {
           setEmployee(response.data[0]);
         } else {
-          console.error("No employee found with the provided id");
+          console.error('No employee found with the provided id');
         }
       } catch (error) {
-        console.error("Error fetching employee detail:", error);
+        console.error('Error fetching employee detail:', error);
       }
     };
 
@@ -44,11 +44,11 @@ const EmployeeDetail = () => {
 
   const handleLogout = () => {
     axios
-      .get("http://localhost:3000/employee/logout")
+      .get('http://localhost:3000/employee/logout')
       .then((result) => {
         if (result.data.Status) {
-          localStorage.removeItem("valid");
-          navigate("/");
+          localStorage.removeItem('valid');
+          navigate('/');
         }
       })
       .catch((err) => console.log(err));
@@ -57,26 +57,27 @@ const EmployeeDetail = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const DashboardFooter = () => (
-    <Footer style={{ textAlign: 'center', background: '#001529', color: 'white' }}>
-
+    <Footer
+      style={{ textAlign: 'center', background: '#001529', color: 'white' }}
+    >
       <div>
         © 2024 Calaya Engineering Services Limited. All rights reserved.
       </div>
     </Footer>
   );
-  
 
   return (
-    <Layout style={{ minHeight: "100vh", background: "#f0f2f5" }}>
+    <Layout style={{ minHeight: '100vh', background: '#f0f2f5' }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo-container">
           <img
-            className={collapsed ? "logo-collapsed" : "logo"}
             src="/Images/logopic.png"
             alt="Logo"
+            style={{ width: collapsed ? '50px' : '150px' }} // Adjust the width dynamically
           />
         </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" icon={<DashboardIcon />}>
             <Link to={`/employee_detail/${id}`}>Dashboard</Link>
           </Menu.Item>
@@ -89,19 +90,22 @@ const EmployeeDetail = () => {
           </Menu.SubMenu>
           <Menu.SubMenu key="sub3" icon={<EventIcon />} title="Timesheets">
             <Menu.Item key="3" icon={<AddTaskIcon />}>
-              <Link to={`/employee_detail/${id}/employee_add_timesheet/${id}`}>Submit Timesheet</Link>
-            </Menu.Item>
-            <Menu.Item key="4" icon={<AddTaskIcon />}>
-              <Link to={`/employee_detail/${id}/employee_timesheet/${id}`}>View Timesheets</Link>
+              <Link to={`/employee_detail/${id}/employee_timesheet/${id}`}>
+                View Timesheets
+              </Link>
             </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key="sub4" icon={<AttachMoneyIcon />} title="Income">
-            <Menu.Item key="5" icon={<AttachMoneyIcon />}>
-              <Link to={`/employee_detail/${id}/employee_pay/${id}`}>View Payslip</Link>
+            <Menu.Item key="4" icon={<AttachMoneyIcon />}>
+              <Link to={`/employee_detail/${id}/employee_pay/${id}`}>
+                View Payslip
+              </Link>
             </Menu.Item>
           </Menu.SubMenu>
-          <Menu.Item key="6" icon={<DashboardIcon />}>
-            <Link to={`/employee_detail/${id}/profile_page/${id}`}>Profile</Link>
+          <Menu.Item key="5" icon={<DashboardIcon />}>
+            <Link to={`/employee_detail/${id}/profile_page/${id}`}>
+              Profile
+            </Link>
           </Menu.Item>
         </Menu>
       </Sider>
@@ -109,11 +113,11 @@ const EmployeeDetail = () => {
         <Header
           className="site-layout-background"
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            background: "#fff",
-            padding: "0 20px",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: '#fff',
+            padding: '0 20px',
           }}
         >
           <Button
@@ -124,21 +128,21 @@ const EmployeeDetail = () => {
           <Input
             prefix={<SearchIcon />}
             placeholder="Search for..."
-            style={{ maxWidth: "500px" }}
+            style={{ maxWidth: '500px' }}
           />
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <Badge badgeContent={10} color="primary">
               <MailIcon color="action" />
             </Badge>
             <Avatar
               icon={<UserOutlined />}
-              style={{ backgroundColor: "#87d068", marginLeft: "8px" }}
+              style={{ backgroundColor: '#87d068', marginLeft: '8px' }}
             />
             <Button
               type="primary"
               icon={<ExitToAppIcon />}
               onClick={handleLogout}
-              style={{ marginLeft: "auto" }}
+              style={{ marginLeft: 'auto' }}
             >
               Sign out
             </Button>
@@ -146,9 +150,9 @@ const EmployeeDetail = () => {
         </Header>
         <Content
           style={{
-            margin: "24px 16px",
+            margin: '24px 16px',
             padding: 24,
-            background: "#fff",
+            background: '#fff',
             minHeight: 280,
           }}
         >

@@ -1,26 +1,28 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import EmployeePDF from './EmployeePDF';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import Modal from "react-modal";
+import "./modal.css";
 
 const Employee = () => {
   const [employees, setEmployees] = useState([]);
   const [categories, setCategories] = useState({});
-  const navigate = useNavigate();
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     // Fetch employees and categories when the component mounts
     axios
-      .get('http://localhost:3000/auth/employee')
+      .get("http://localhost:3000/auth/employee")
       .then((employeeResult) => {
         if (employeeResult.data.Status) {
           setEmployees(employeeResult.data.Result);
           // Fetch all categories
           axios
-            .get('http://localhost:3000/auth/category')
+            .get("http://localhost:3000/auth/category")
             .then((categoryResult) => {
               if (categoryResult.data.Status) {
                 const categoryData = {};
@@ -49,7 +51,7 @@ const Employee = () => {
           setEmployees((prevEmployees) =>
             prevEmployees.filter((employee) => employee.id !== id)
           );
-          alert('Employee deleted successfully');
+          alert("Employee deleted successfully");
         } else {
           alert(result.data.Error);
         }
@@ -57,12 +59,14 @@ const Employee = () => {
       .catch((error) => console.error(error));
   };
 
-  const handleOpenPDF = (employee) => {
-    const blob = new Blob([<EmployeePDF employee={employee} />], {
-      type: 'application/pdf',
-    });
-    const url = URL.createObjectURL(blob);
-    window.open(url);
+  const openModal = (employee) => {
+    setSelectedEmployee(employee);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedEmployee(null);
+    setModalIsOpen(false);
   };
 
   return (
@@ -89,6 +93,7 @@ const Employee = () => {
             <div className="employee-details">
               <h5>{employee.name}</h5>
               <p>{employee.email}</p>
+              <p>Address: {employee.address}</p>
               <p>Salary: ${employee.salary}</p>
               <p>Category: {categories[employee.category_id]}</p>
             </div>
@@ -106,15 +111,57 @@ const Employee = () => {
                 <FaTrash />
               </button>
               <button
-                onClick={() => handleOpenPDF(employee)}
+                onClick={() => openModal(employee)}
                 className="btn btn-secondary btn-sm ms-2"
               >
-                Open PDF
+                Open Details
               </button>
             </div>
           </div>
         ))}
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Employee Details Modal"
+        className="modal-container"
+        overlayClassName="modal-overlay"
+      >
+        {selectedEmployee && (
+          <div>
+            <button onClick={closeModal} className="modal-close-btn">
+              X
+            </button>
+            <h2 className="modal-title">Employee Details</h2>
+            <div className="modal-content">
+              <p>
+                <strong>Name:</strong> {selectedEmployee.name}
+              </p>
+              <p>
+                <strong>Email:</strong> {selectedEmployee.email}
+              </p>
+              <p>
+                <strong>Address:</strong> {selectedEmployee.address}
+              </p>
+              <p>
+                <strong>Salary:</strong> ${selectedEmployee.salary}
+              </p>
+              <p>
+                <strong>Category:</strong>{" "}
+                {categories[selectedEmployee.category_id]}
+              </p>
+              <img
+                src={`http://localhost:3000/Images/${selectedEmployee.image}`}
+                alt={selectedEmployee.name}
+                className="modal-img"
+              />
+            </div>
+            <button onClick={closeModal} className="modal-close-btn">
+              Close
+            </button>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };

@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import './empstyle.css';
 import EventEmitter from 'events';
-import "./empstyle.css";
 
 const eventEmitter = new EventEmitter();
 
@@ -113,7 +113,6 @@ const EmployeeTasks = () => {
         <table className="task-table">
           <thead>
             <tr>
-              <th></th>
               <th>Name</th>
               <th>Description</th>
               <th>Deadline</th>
@@ -125,13 +124,6 @@ const EmployeeTasks = () => {
           <tbody>
             {tasks.map((task) => (
               <tr key={task.id} className={task.selected ? "selected" : ""}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={task.selected}
-                    onChange={() => {}}
-                  />
-                </td>
                 <td>{task.name}</td>
                 <td>{task.description}</td>
                 <td>{new Date(task.deadline).toLocaleString()}</td>

@@ -54,6 +54,18 @@ router.post("/employee_login", (req, res) => {
     });
 });
 
+router.delete('/employee_tasks/:id', (req, res) => {
+  const taskId = req.params.id;
+  const sql = "DELETE FROM tasks WHERE id = ?";
+  con.query(sql, [taskId], (err, result) => {
+      if (err) {
+          return res.json({ Status: false, Error: "Query Error" });
+      } else {
+          return res.json({ Status: true, Message: "Task deleted successfully" });
+      }
+  });
+});
+
 
 
 router.get('/profile/:id', (req, res) => {
@@ -73,24 +85,29 @@ router.get('/profile/:id', (req, res) => {
   
   
   router.post('/employee_add_timesheet', (req, res) => {
-    const { employee_id, date, startTime, endTime, hoursWorked, notes } = req.body;
+    const { employeeId, date, startTime, endTime, hoursWorked, notes } = req.body;
   
     // Validation for the required fields
-    if (!employee_id || !date || !startTime || !endTime || !hoursWorked) {
-      return res.status(400).json({ success: false, message: 'All fields are required' });
+    if (!employeeId || !date || !startTime || !endTime || !hoursWorked) {
+        return res.status(400).json({ success: false, message: 'All fields are required' });
     }
   
     // Insert the timesheet data into the database
     const sql = "INSERT INTO timesheet (employee_id, date, start_time, end_time, hours_worked, notes) VALUES (?, ?, ?, ?, ?, ?)";
-    con.query(sql, [employee_id, date, startTime, endTime, hoursWorked, notes], (err, result) => {
-      if (err) {
-        console.error('Error adding timesheet:', err);
-        return res.status(500).json({ success: false, message: 'Error adding timesheet', error: err.message });
-      } else {
-        return res.json({ success: true, message: 'Timesheet added successfully', id: result.insertId });
-      }
+    con.query(sql, [employeeId, date, startTime, endTime, hoursWorked, notes], (err, result) => {
+        if (err) {
+            console.error('Error adding timesheet:', err);
+            return res.status(500).json({ success: false, message: 'Error adding timesheet', error: err.message });
+        } else {
+            if (result.affectedRows === 1) {
+                return res.json({ success: true, message: 'Timesheet added successfully', id: result.insertId });
+            } else {
+                return res.status(500).json({ success: false, message: 'Failed to add timesheet' });
+            }
+        }
     });
-  });
+});
+
   
   router.put('/employee/update_task_status/:taskId', async (req, res) => {
     const { taskId } = req.params;
@@ -110,16 +127,47 @@ router.get('/profile/:id', (req, res) => {
   });
   
   router.get('/employee_timesheet/:id', (req, res) => {
-    const employee_id = req.params.id;
+    const employeeId = req.params.id;
     const sql = "SELECT * FROM timesheet WHERE employee_id = ?";
-    con.query(sql, [employee_id], (err, result) => {
+    con.query(sql, [employeeId], (err, result) => {
         if (err) {
-            return res.json({ Status: false, Error: "Query Error" });
+            return res.status(500).json({ Status: false, Error: "Internal Server Error" });
         } else {
-            return res.json({ Status: true, Result: result });
+            return res.status(200).json({ Status: true, Result: result });
         }
     });
 });
+
+
+// Endpoint to archive a timesheet
+router.put('/archive_employee_timesheet/:id', (req, res) => {
+  const timesheetId = req.params.id;
+
+  con.query('UPDATE timesheets SET archived = true WHERE id = ?', [timesheetId], (error, results) => {
+    if (error) {
+      console.error('Error archiving timesheet:', error);
+      return res.status(500).json({ status: false, error: 'Error archiving timesheet' });
+    }
+
+    return res.json({ status: true, message: 'Timesheet archived successfully' });
+  });
+});
+
+// Endpoint to unarchive a timesheet
+router.put('/unarchive_employee_timesheet/:id', (req, res) => {
+  const timesheetId = req.params.id;
+
+  con.query('UPDATE timesheets SET archived = false WHERE id = ?', [timesheetId], (error, results) => {
+    if (error) {
+      console.error('Error unarchiving timesheet:', error);
+      return res.status(500).json({ status: false, error: 'Error unarchiving timesheet' });
+    }
+
+    return res.json({ status: true, message: 'Timesheet unarchived successfully' });
+  });
+});
+
+
 
 
   
@@ -139,10 +187,60 @@ router.get('/timesheet_count/:id', (req, res) => {
       return res.json({Status: true, Result: result})
   })
 })
-  
+
+router.get('/payslip_count/:id', (req, res) => {
+  const employeeId = req.params.id; // Extract employee ID from request parameters
+  const sql = "SELECT COUNT(id) AS payslips FROM payslips WHERE employee_id = ?";
+  con.query(sql, [employeeId], (err, result) => {
+    if(err) return res.json({Status: false, Error: "Query Error: " + err});
+    return res.json({Status: true, Result: result});
+  });
+});
+
+
 
   
+router.delete('/delete_employee_timesheet/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "delete from timesheet where id = ?";
+    con.query(sql, [id], (err, result) => {
+      if (err) return res.json({ Status: false, Error: "Query Error" + err });
+      return res.json({ Status: true, Result: result });
+    });
+  });
 
+  router.put("/edit_employee_timesheet/:id", (req, res) => {
+    const id = req.params.id;
+    const sql = `UPDATE timesheet 
+                 SET employee_id = ?, date = ?, start_time = ?, end_time = ?, hours_worked = ?, notes = ?
+                 WHERE id = ?`;
+    const values = [
+      req.body.employeeId,
+      req.body.date,
+      req.body.startTime,
+      req.body.endTime,
+      req.body.hoursWorked,
+      req.body.notes,
+    ];
+    con.query(sql, [...values, id], (err, result) => {
+      if (err) return res.json({ Status: false, Error: "Query Error" + err });
+      return res.json({ Status: true, Result: result });
+    });
+  });
+  
+  router.get('/employee_pay/:id', (req, res) => {
+    const employeeId = req.params.id; // Assuming the employee ID is passed as a parameter
+  
+    const sql = "SELECT * FROM payslips WHERE employee_id = ?";
+    con.query(sql, [employeeId], (err, result) => {
+      if (err) {
+        return res.json({ Status: false, Error: "Query Error" });
+      } else {
+        return res.json({ Status: true, Result: result });
+      }
+    });
+  });
+  
   router.get('/logout', (req, res) => {
     res.clearCookie('token')
     return res.json({Status: true})

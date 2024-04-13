@@ -31,8 +31,10 @@ import EmployeeCalender from "./Components/Employee/EmployeeCalender";
 import AddAttendance from "./Components/Admin/AddAttendance";
 import Attendance from "./Components/Admin/Attendance";
 import AddEmpTimesheet from "./Components/Employee/AddEmpTimesheet";
-import TImesheet from "./Components/Admin/TImesheet";
+import TImesheet from "./Components/Admin/Timesheet";
 import Payslips from "./Components/Admin/Payslips";
+import EditEmployeeTimesheet from "./Components/Employee/EditEmployeeTimsheet";
+import AddPayslip from "./Components/Admin/AddPayslip";
 
 // PrivateRoute component to protect routes
 const PrivateRoute = ({ element }) => {
@@ -60,8 +62,10 @@ function App() {
           <Route path="employee_calender/:id" element={<EmployeeCalender />} />
           <Route path="employee_pay/:id" element={<EmployeePay />} />
           <Route path="employee_add_timesheet/:id" element={<AddEmpTimesheet />} />
+          <Route path="/employee_detail/:id/employee_edit_timesheet/:timesheetId" element={<EditEmployeeTimesheet />} />
           <Route path="employee_timesheet/:id" element={<EmployeeTimesheet />} />
           <Route path="profile_page/:id" element={<ProfilePage />} />
+        
         </Route>
 
         <Route
@@ -83,6 +87,7 @@ function App() {
           <Route path="/dashboard/add_user" element={<AddUser />} />
           <Route path="/dashboard/add_attendance" element={<AddAttendance />} />
           <Route path="/dashboard/timesheet" element={<TImesheet/>} />
+          <Route path="/dashboard/add_payslips" element={<AddPayslip/>} />
           <Route path="/dashboard/edit_user/:id" element={<EditUser />} />
           <Route path="/dashboard/add_task" element={<AddTask />} />
           <Route

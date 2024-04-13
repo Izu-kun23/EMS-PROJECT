@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -23,6 +24,8 @@ const Tasks = () => {
         task.id === id ? { ...task, status } : task
       );
       setTasks(updatedTasks);
+      // Update local storage with updated tasks
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
     };
 
     eventEmitter.on('taskStatusChange', handleTaskStatusChange);
@@ -48,46 +51,49 @@ const Tasks = () => {
         axios.get('http://localhost:3000/auth/employee'),
         axios.get('http://localhost:3000/auth/category')
       ]);
-
+  
       if (tasksResponse.data.Status) {
         const tasksWithNames = tasksResponse.data.Result.map(task => {
           const employee = employeeResponse.data.Result.find(emp => emp.id === task.employee_id);
           const category = categoryResponse.data.Result.find(cat => cat.id === task.category_id);
-
+  
           const employeeName = employee ? employee.name : 'N/A';
           const categoryName = category ? category.name : 'N/A';
-
+  
           return {
             ...task,
             employee_name: employeeName,
             category_name: categoryName,
             selected: false,
+            status: task.status,
+            isOverdue: task.isOverdue,
+            showDropdown: false,
           };
         });
-
+  
         setTasks(tasksWithNames);
         // Update local storage with fetched tasks
         localStorage.setItem('tasks', JSON.stringify(tasksWithNames));
       } else {
         console.error('Error fetching tasks:', tasksResponse.data.Error);
       }
-
+  
       if (employeeResponse.data.Status) {
         const employeeData = {};
         employeeResponse.data.Result.forEach(employee => {
           employeeData[employee.id] = employee.name;
         });
-        setEmployees(employeeData);
+        setEmployees(employeeData); // Update employees state
       } else {
         alert(employeeResponse.data.Error);
       }
-
+  
       if (categoryResponse.data.Status) {
         const categoryData = {};
         categoryResponse.data.Result.forEach(category => {
           categoryData[category.id] = category.name;
         });
-        setCategories(categoryData);
+        setCategories(categoryData); // Update categories state
       } else {
         alert(categoryResponse.data.Error);
       }
@@ -95,7 +101,7 @@ const Tasks = () => {
       console.error('Error fetching data:', error);
     }
   };
-
+  
   const handleTaskClick = taskId => {
     setTasks(prevTasks =>
       prevTasks.map(task =>
@@ -115,9 +121,10 @@ const Tasks = () => {
 
         if (response.data.Status) {
           // Remove the deleted task from the state
-          setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+          const updatedTasks = tasks.filter(task => task.id !== taskId);
+          setTasks(updatedTasks);
           // Update local storage with updated tasks after deletion
-          localStorage.setItem('tasks', JSON.stringify(tasks.filter(task => task.id !== taskId)));
+          localStorage.setItem('tasks', JSON.stringify(updatedTasks));
         } else {
           console.error('Error deleting task:', response.data.Error);
         }
@@ -127,28 +134,30 @@ const Tasks = () => {
     }
   };
 
-  const handleStatusChange = async (taskId, status) => {
+  const handleStatusChange = async (taskId, newStatus) => {
+    // Update locally
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId ? { ...task, status: newStatus, showDropdown: false } : task
+    );
+    setTasks(updatedTasks);
+
+    // Store status in localStorage
+    localStorage.setItem(`task_status_${taskId}`, newStatus);
+
+    // Emit an event to notify other components about the status change
+    eventEmitter.emit('taskStatusChange', { id: taskId, status: newStatus });
+
+    // Send update to backend
     try {
-      // Update the task status immediately
-      await axios.put(`http://localhost:3000/employee/tasks/${taskId}`, {
-        status,
-      });
-
-      // Emit an event for task status change
-      eventEmitter.emit('taskStatusChange', { id: taskId, status });
-
-      // Update the task status in the local state
-      const updatedTasks = tasks.map(task =>
-        task.id === taskId ? { ...task, status } : task
-      );
-      setTasks(updatedTasks);
-
-      // Update local storage with updated tasks
-      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      const response = await axios.put(`http://localhost:3000/employee/update_task_status/${taskId}`, { status: newStatus });
+      if (!response.data.Status) {
+        console.error("Failed to update task status:", response.data.Error);
+      }
     } catch (error) {
-      console.error('Error updating task status:', error);
+      console.error("Error updating task status:", error);
     }
   };
+  
 
   const getStatusColorClass = status => {
     switch (status) {
@@ -165,15 +174,14 @@ const Tasks = () => {
     }
   };
 
-  const formatDateTime = dateTimeString => {
+  // Function to format the date string
+  const formatDate = dateString => {
     const options = {
       year: 'numeric',
-      month: 'short',
+      month: 'long',
       day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
     };
-    return new Date(dateTimeString).toLocaleString(undefined, options);
+    return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   return (
@@ -185,10 +193,9 @@ const Tasks = () => {
             <div className="kebab-menu" onClick={() => handleTaskClick(task.id)}>
               <FaTrash onClick={() => handleDeleteTask(task.id)} />
             </div>
-            <p><strong>ID:</strong> {task.id}</p>
             <p><strong>Name:</strong> {task.name}</p>
             <p><strong>Description:</strong> {task.description}</p>
-            <p><strong>Deadline:</strong> {task.deadline}</p>
+            <p><strong>Deadline:</strong> {formatDate(task.deadline)}</p>
             <p><strong>Employee Name:</strong> {employees[task.employee_id]}</p>
             <p><strong>Category Name:</strong> {categories[task.category_id]}</p>
             <p><strong>Status:</strong>

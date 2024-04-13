@@ -1503,43 +1503,6 @@ th {
   flex-direction: column; /* Set vertical positioning */
 }
 
-.employee-tasks-container {
-  width: 80%;
-  margin: auto;
-}
-
-.tasks-header {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.task-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.task-item {
-  width: 50%;
-  padding: 10px;
-}
-
-.task-box {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  height: 100%;
-}
-
-.task-title {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.task-description {
-  font-size: 16px;
-  color: #555;
-}
 
 .footer {
   background-color: #001529;
@@ -1732,4 +1695,44 @@ button[type="submit"]:hover {
 
 .notification button:hover {
   color: black;
+}
+
+.category-container {
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-header {
+  text-align: center;
+}
+
+.add-category-btn {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #1265b8;
+  color: white;
+}
+
+
+
+.category-table {
+  border: 1px solid #ccc; /* Add solid border */
+  border-collapse: collapse; /* Collapse borders */
+  width: 100%;
+}
+
+.category-table th,
+.category-table td {
+  border: 1px solid #ccc; /* Add solid border */
+  padding: 8px;
+  text-align: left;
+}
+
+.edit-btn {
+  margin-right: 5px;
+}
+
+.delete-btn {
+  margin-left: 5px;
 }

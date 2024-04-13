@@ -1,0 +1,47 @@
+.timesheet-container {
+    margin: 20px;
+  }
+  
+  .timesheet-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  
+  .timesheet-table th,
+  .timesheet-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .timesheet-table th {
+    background-color: #f2f2f2;
+    font-weight: bold; /* Add strong font weight to table headings */
+  }
+  
+  .timesheet-table tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .archive-button,
+  .unarchive-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .archive-button:hover,
+  .unarchive-button:hover {
+    background-color: #45a049;
+  }
+  
+  .delete-button {
+    background-color: red;
+    color: white;
+  }
+  

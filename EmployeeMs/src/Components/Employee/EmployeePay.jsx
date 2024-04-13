@@ -1,69 +1,66 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { DatePicker, Table, Spin } from 'antd';
+import { DatePicker, Table, Spin, Button } from 'antd';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const { RangePicker } = DatePicker;
 
 const EmployeePay = () => {
   const [payslips, setPayslips] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  // Mock data for payslips
-  const mockPayslips = [
-    {
-      key: '1',
-      date: '2024-04-01',
-      amount: '2500.00',
-      details: 'Salary for March',
-      deductions: '200.00',
-      netPay: '2300.00',
-    },
-    {
-      key: '2',
-      date: '2024-05-01',
-      amount: '2500.00',
-      details: 'Salary for April',
-      deductions: '200.00',
-      netPay: '2300.00',
-    },
-    {
-      key: '3',
-      date: '2024-06-01',
-      amount: '2600.00',
-      details: 'Salary for May - Bonus included',
-      deductions: '210.00',
-      netPay: '2390.00',
-    },
-    // ... more payslips
-    {
-      key: '3',
-      date: '2024-06-01',
-      amount: '2600.00',
-      details: 'Salary for May - Bonus included',
-      deductions: '210.00',
-      netPay: '2390.00',
-    },
-  ];
+  const employeeId = localStorage.getItem('employee_id');
 
   useEffect(() => {
-    // Replace with actual data load function in production
-    setLoading(true);
-    setTimeout(() => {
-      setPayslips(mockPayslips); // Use the mock data
-      setLoading(false);
-    }, 1000); // Simulate a network request delay
-  }, []);
+    if (employeeId) {
+      fetchPayslips(employeeId);
+    }
+  }, [employeeId]);
 
-  const loadPayslips = async (dates) => {
-    // Replace this with actual data loading logic in production
+  const fetchPayslips = async (employeeId) => {
+    setLoading(true);
+    try {
+      const [payslipsResponse, employeesResponse] = await Promise.all([
+        axios.get(`http://localhost:3000/employee/employee_pay/${employeeId}`),
+        axios.get('http://localhost:3000/auth/employee'),
+      ]);
+
+      if (payslipsResponse.data.Status && employeesResponse.data.Status) {
+        const payslipsData = payslipsResponse.data.Result;
+        const employeesData = employeesResponse.data.Result;
+
+        const modifiedPayslips = payslipsData.map((payslip, index) => {
+          const employee = employeesData.find(emp => emp.id === payslip.employee_id);
+          const formattedDate = moment(payslip.date).format('YYYY-MM-DD');
+          return {
+            ...payslip,
+            key: index,
+            employeeName: employee ? employee.name : 'Unknown',
+            date: formattedDate,
+          };
+        });
+
+        setPayslips(modifiedPayslips);
+      } else {
+        console.error('Failed to fetch payslips or employees');
+      }
+    } catch (error) {
+      console.error('Error fetching payslips or employees:', error);
+    }
+    setLoading(false);
   };
 
   const handleDateChange = (dates) => {
-    // Replace this with actual date range filtering logic in production
+    // Implement date range filtering logic if needed
   };
 
   const columns = [
+    {
+      title: 'Employee Name',
+      dataIndex: 'employeeName',
+      key: 'employeeName',
+    },
     {
       title: 'Date',
       dataIndex: 'date',
@@ -74,7 +71,6 @@ const EmployeePay = () => {
       dataIndex: 'amount',
       key: 'amount',
     },
-    // Optionally, you can add more columns based on your mock data
     {
       title: 'Details',
       dataIndex: 'details',
@@ -82,20 +78,24 @@ const EmployeePay = () => {
     },
     {
       title: 'Deductions',
-      dataIndex: 'deductions',
-      key: 'deductions',
+      dataIndex: 'deduction',
+      key: 'deduction',
     },
     {
       title: 'Net Pay',
-      dataIndex: 'netPay',
-      key: 'netPay',
+      dataIndex: 'net_pay',
+      key: 'net_pay',
     },
   ];
 
   return (
     <div>
       <h1>Your Payslips</h1>
-      <RangePicker onChange={handleDateChange} />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div>
+          <RangePicker onChange={handleDateChange} />
+        </div>
+      </div>
       <Spin spinning={loading}>
         <Table columns={columns} dataSource={payslips} rowKey="key" />
       </Spin>
